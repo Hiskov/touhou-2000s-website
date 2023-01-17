@@ -14,3 +14,31 @@ h1{
     font-size: 3em;
     text-align: center;
 }
+
+
+
+.tracks-container{
+    border: 0.1em solid white;
+    height: 20%;
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tracks-row{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.track-slot{
+    border: 0.1em solid white;
+    background-image: url("../assets/eosd_placeholder.jpg");
+    background-size: 100%;
+    width: 16%;
+}
