@@ -1,0 +1,16 @@
+html{
+    background-color: black;
+}
+
+body{
+    background-image: url("../assets/aquagalaxy_small.gif");
+    width: 75%;
+    margin: auto;
+    color: white;
+    font-size: medium;
+}
+
+h1{
+    font-size: 3em;
+    text-align: center;
+}
