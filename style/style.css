@@ -17,21 +17,20 @@ h1 {
 }
 .tracks {
   border: 0.1em solid white;
-  width: 49.5em;
+  width: 45.9em;
   height: 15em;
   margin: auto;
-}
-.tracks-row {
-  margin: 0 auto;
-  width: 100%;
-  height: 50%;
-  display: flex;
-  justify-content: space-around;
+  display: grid;
   align-items: center;
+  grid-template-columns: repeat(6, 5.7375em);
+  grid-template-rows: repeat(2, 5.7375em);
+  gap: 1.9em 1.9em;
+  padding-top: 2em;
+  padding-left: 2em;
 }
 .track-slot {
-  height: 6.1875em;
-  width: 6.1875em;
+  height: 6em;
+  width: 6em;
 }
 fieldset {
   padding: 0 0.2em 0.2em 0.2em;

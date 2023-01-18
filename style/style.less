@@ -24,7 +24,7 @@ h1{
 }
 
 
-@tracks_width: @total_width*0.55;
+@tracks_width: @total_width*0.51;
 @tracks_height: 15em;
 @track_space: 0; //coef
 @track_size: @tracks_width*(1/8);
@@ -34,20 +34,21 @@ h1{
     width: @tracks_width;
     height: @tracks_height;
     margin: auto;
+
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(6, @track_size);
+    grid-template-rows: repeat(2, @track_size);
+    gap: 1.9em 1.9em;
+
+    padding-top: 2.0em;
+    padding-left: 2.0em;
 }
 
-.tracks-row{
-    margin: 0 auto;
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
 
 .track-slot{
-    height: @track_size;
-    width: @track_size;
+    height: 6em;
+    width: 6em;
     //padding: 0.2em;
     //margin: @track_space;
 }
