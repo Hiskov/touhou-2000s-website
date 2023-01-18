@@ -1,0 +1,68 @@
+html{
+    background-color: black;
+}
+
+body{
+    color: white;
+    font-size: medium;
+}
+
+
+@total_width: 90em;
+
+.main{
+    background-image: url("../assets/aquagalaxy_small.gif");
+    width: @total_width;
+    height: 100%;
+    margin: auto;
+}
+
+
+h1{
+    font-size: 100%;
+    text-align: center;
+}
+
+
+@tracks_width: @total_width*0.55;
+@tracks_height: 15em;
+@track_space: 0; //coef
+@track_size: @tracks_width*(1/8);
+
+.tracks{
+    border: 0.1em solid white;
+    width: @tracks_width;
+    height: @tracks_height;
+    margin: auto;
+}
+
+.tracks-row{
+    margin: 0 auto;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.track-slot{
+    height: @track_size;
+    width: @track_size;
+    //padding: 0.2em;
+    //margin: @track_space;
+}
+
+fieldset{
+    @padding: 0.2em;
+    padding: 0 @padding @padding @padding;
+    border-color: #F00;
+    border-style: solid;
+    border-width: 0.2em;
+}
+
+legend{
+    font-size: 0.7em;
+    background: none;
+    margin-left: auto;
+    margin-right: auto;
+}

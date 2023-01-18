@@ -1,44 +1,47 @@
-html{
-    background-color: black;
+html {
+  background-color: black;
 }
-
-body{
-    background-image: url("../assets/aquagalaxy_small.gif");
-    width: 75%;
-    margin: auto;
-    color: white;
-    font-size: medium;
+body {
+  color: white;
+  font-size: medium;
 }
-
-h1{
-    font-size: 3em;
-    text-align: center;
+.main {
+  background-image: url("../assets/aquagalaxy_small.gif");
+  width: 90em;
+  height: 100%;
+  margin: auto;
 }
-
-
-
-.tracks-container{
-    border: 0.1em solid white;
-    height: 20%;
-    width: 70%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+h1 {
+  font-size: 100%;
+  text-align: center;
 }
-
-.tracks-row{
-    width: 100%;
-    height: 50%;
-    display: flex;
-    justify-content: space-between;
-    margin: 10px;
+.tracks {
+  border: 0.1em solid white;
+  width: 49.5em;
+  height: 15em;
+  margin: auto;
 }
-
-.track-slot{
-    border: 0.1em solid white;
-    background-image: url("../assets/eosd_placeholder.jpg");
-    background-size: 100%;
-    width: 16%;
+.tracks-row {
+  margin: 0 auto;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.track-slot {
+  height: 6.1875em;
+  width: 6.1875em;
+}
+fieldset {
+  padding: 0 0.2em 0.2em 0.2em;
+  border-color: #F00;
+  border-style: solid;
+  border-width: 0.2em;
+}
+legend {
+  font-size: 0.7em;
+  background: none;
+  margin-left: auto;
+  margin-right: auto;
 }
