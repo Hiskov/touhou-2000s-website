@@ -11,9 +11,19 @@ body {
   height: 100%;
   margin: auto;
 }
-h1 {
-  font-size: 100%;
-  text-align: center;
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.remilia {
+  width: 12%;
+  padding-bottom: 1.7em;
+}
+#title {
+  display: block;
+  width: 40%;
+  height: auto;
 }
 .tracks {
   border: 0.1em solid white;
@@ -26,7 +36,7 @@ h1 {
   grid-template-rows: repeat(2, 5.7375em);
   gap: 1.9em 1.9em;
   padding-top: 2em;
-  padding-left: 2em;
+  padding-left: 1em;
 }
 .track-slot {
   height: 6em;
