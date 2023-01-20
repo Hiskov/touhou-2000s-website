@@ -19,11 +19,21 @@ header {
 .remilia {
   width: 12%;
   padding-bottom: 1.7em;
+  image-rendering: pixelated;
 }
 #title {
   display: block;
   width: 40%;
   height: auto;
+}
+#imgzone {
+  margin-top: 3em;
+  margin-bottom: 4em;
+}
+#imgzone img {
+  display: block;
+  margin: auto;
+  width: 22%;
 }
 .tracks {
   border: 0.1em solid white;
