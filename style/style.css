@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'windamp';
+  src: url('../fonts/Sys Flash10.ttf') format('truetype');
+}
 html {
   background-color: black;
 }
@@ -23,7 +27,7 @@ header {
 }
 #title {
   display: block;
-  width: 40%;
+  width: 35%;
   height: auto;
 }
 #wings {
@@ -33,10 +37,12 @@ header {
 #wings img {
   display: block;
   margin: auto;
+  width: 40%;
+  image-rendering: pixelated;
 }
 #imgzone {
   margin-top: 3em;
-  margin-bottom: 4em;
+  margin-bottom: 2em;
 }
 #imgzone img {
   display: block;
@@ -44,31 +50,37 @@ header {
   width: 20%;
 }
 .tracks {
-  border: 0.1em solid white;
-  width: 45.9em;
-  height: 15em;
+  background-image: url("../assets/windamp_layout.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  width: 760px;
+  height: 323px;
   margin: auto;
   display: grid;
   align-items: center;
   grid-template-columns: repeat(6, 5.7375em);
   grid-template-rows: repeat(2, 5.7375em);
-  gap: 1.9em 1.9em;
-  padding-top: 2em;
-  padding-left: 1em;
+  gap: 39px 35px;
+  padding-top: 40px;
+  padding-left: 15px;
+}
+.slot-container {
+  position: relative;
+  text-align: center;
+  margin-top: 15px;
 }
 .track-slot {
-  height: 6em;
-  width: 6em;
+  height: 121px;
+  width: 110px;
+  image-rendering: pixelated;
 }
-fieldset {
-  padding: 0 0.2em 0.2em 0.2em;
-  border-color: #F00;
-  border-style: solid;
-  border-width: 0.2em;
-}
-legend {
-  font-size: 0.7em;
-  background: none;
-  margin-left: auto;
-  margin-right: auto;
+.track-name {
+  font-family: 'windamp';
+  color: #00ff00;
+  font-size: 14px;
+  position: relative;
+  left: 9px;
+  bottom: 13px;
+  text-rendering: auto;
 }

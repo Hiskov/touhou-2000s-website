@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'windamp';
+    src: url('../fonts/Sys Flash10.ttf') format('truetype');
+}  
+
+
 html{
     background-color: black;
 }
@@ -33,7 +39,7 @@ header{
 
 #title{
     display: block;
-    width: 40%;
+    width: 35%;
     height: auto;
 }
 
@@ -41,6 +47,8 @@ header{
     img{
         display: block;
         margin: auto;
+        width: 40%;
+        image-rendering: pixelated;
     }
     margin-top: -3em;
     margin-bottom: -4em;
@@ -53,51 +61,57 @@ header{
         width: 20%;
     }
     margin-top: 3em;
-    margin-bottom: 4em;
+    margin-bottom: 2em;
 }
 
 
 
 @tracks_width: @total_width*0.51;
-@tracks_height: 15em;
+//@tracks_height: 15em;
 @track_space: 0; //coef
 @track_size: @tracks_width*(1/8);
 
+@windamp_scale: 1.0;
+
 .tracks{
-    border: 0.1em solid white;
-    width: @tracks_width;
-    height: @tracks_height;
+    background-image: url("../assets/windamp_layout.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    width: 760px*@windamp_scale;
+    height: 323px*@windamp_scale;
     margin: auto;
 
     display: grid;
     align-items: center;
     grid-template-columns: repeat(6, @track_size);
     grid-template-rows: repeat(2, @track_size);
-    gap: 1.9em 1.9em;
+    gap: 39px 35px;
 
-    padding-top: 2.0em;
-    padding-left: 1.0em;
+    padding-top: 40px;
+    padding-left: 15px;
 }
 
+.slot-container{
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+}
 
 .track-slot{
-    height: 6em;
-    width: 6em;
+    height: 121px*@windamp_scale;
+    width: 110px*@windamp_scale;
+    image-rendering: pixelated;
     //padding: 0.2em;
     //margin: @track_space;
 }
 
-fieldset{
-    @padding: 0.2em;
-    padding: 0 @padding @padding @padding;
-    border-color: #F00;
-    border-style: solid;
-    border-width: 0.2em;
-}
-
-legend{
-    font-size: 0.7em;
-    background: none;
-    margin-left: auto;
-    margin-right: auto;
+.track-name{
+    font-family: 'windamp';
+    color: rgb(0, 255, 0);
+    font-size: 14px;
+    position: relative;
+    left: 9px;
+    bottom: 13px;
+    text-rendering: auto;
 }
