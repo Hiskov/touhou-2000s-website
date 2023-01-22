@@ -26,6 +26,14 @@ header {
   width: 40%;
   height: auto;
 }
+#wings {
+  margin-top: -3em;
+  margin-bottom: -4em;
+}
+#wings img {
+  display: block;
+  margin: auto;
+}
 #imgzone {
   margin-top: 3em;
   margin-bottom: 4em;
@@ -33,7 +41,7 @@ header {
 #imgzone img {
   display: block;
   margin: auto;
-  width: 22%;
+  width: 20%;
 }
 .tracks {
   border: 0.1em solid white;
