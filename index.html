@@ -4,7 +4,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>my 2hu fanpage</title>
     
-        <link rel="stylesheet" href="https://unpkg.com/98.css">
+        <!--<link rel="stylesheet" href="https://unpkg.com/98.css">-->
         <link rel="stylesheet" href="style/style.css">
         
         <link rel="icon" type="image/x-icon" href="assets/Icon_th06.png"> 
@@ -22,7 +22,7 @@
             <section id="imgzone">
                 <img src="assets/imgzone full.gif"></img>
             </section>
-            <section class="tracks">
+            <section class="ikuamp">
                 <div class="slot-container">
                     <img class= track-slot src="assets/slot.png"></img>
                     <div class="track-name">SYNTH</div>
@@ -44,6 +44,19 @@
                 <img class= track-slot src="assets/slot.png"></img>
                 <img class= track-slot src="assets/slot.png"></img>
                 <img class= track-slot src="assets/slot.png"></img>
+                <div class="audio-player">
+                    <audio id="player" preload="none" ondurationchange="setupSeek()" ontimeupdate="initProgressBar()">
+                        <source src="assets/touhou_2000s_audio.mp3">
+                    </audio>
+                    <div class="actions">
+                        <button class="play action" title="Play" onclick="clickPlay()" onmousedown=""></button>
+                        <button class="pause action" title="Pause" onclick="clickPause()" ></button>
+                        <button class="stop action" title="Stop" onclick="clickStop()" ></button>
+                    </div>
+                    <div class="player-controls">
+                        <input id="position" type="range" min="0" step="1" value="0" onchange="seekAudio()" oninput="seekAudio()" class="seek" style="touch-action: none;">
+                    </div>
+                </div>
             </div>
         </div>
     </body>

@@ -73,7 +73,7 @@ header{
 
 @windamp_scale: 1.0;
 
-.tracks{
+.ikuamp{
     background-image: url("../assets/windamp_layout.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -86,32 +86,92 @@ header{
     align-items: center;
     grid-template-columns: repeat(6, @track_size);
     grid-template-rows: repeat(2, @track_size);
-    gap: 39px 35px;
+    gap: 39px*@windamp_scale 35px*@windamp_scale;
 
-    padding-top: 40px;
-    padding-left: 15px;
+    padding-top: 40px*@windamp_scale;
+    padding-left: 15px*@windamp_scale;
+
+    .slot-container{
+        position: relative;
+        text-align: center;
+        margin-top: 15px*@windamp_scale;
+    }
+    
+    .track-slot{
+        height: 121px*@windamp_scale;
+        width: 110px*@windamp_scale;
+        image-rendering: pixelated;
+        //padding: 0.2em;
+        //margin: @track_space;
+    }
+    
+    .track-name{
+        font-family: 'windamp';
+        color: rgb(0, 255, 0);
+        font-size: 14px;
+        position: relative;
+        left: 9px*@windamp_scale;
+        bottom: 13px*@windamp_scale;
+        text-rendering: auto;
+    }
+
+    .audio-player{
+        display: flex;
+
+        *{
+            bottom: 30px;
+        }
+
+        #position {
+            appearance: none;
+            width: 248px;
+            height: 10px;
+            position: relative;
+            left: 16px;
+            background-image: url("../assets/player_bar.png");
+        }
+        
+        #position::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 29px;
+            height: 10px;
+            background-image: url('../assets/player_cursor.png');
+            background-position: center center;
+            cursor: pointer;
+        }
+
+        .actions{
+            display: flex;
+            margin-right: 5px;
+            *{
+                height: 18px;
+                width: 23px;
+                left: 16px;
+                bottom: 31px;
+                position: relative;
+                border: none;
+            }
+            .play{
+                background-image: url('../assets/play.png');
+                &:active{
+                    background-image: url('../assets/play_push.png');
+                }
+            }
+            .pause{
+                background-image: url('../assets/pause.png');
+                &:active{
+                    background-image: url('../assets/pause_push.png');
+                }
+            }
+            .stop{
+                background-image: url('../assets/stop.png');
+                &:active{
+                    background-image: url('../assets/stop_push.png');
+                }
+            }
+        }
+    }
 }
 
-.slot-container{
-    position: relative;
-    text-align: center;
-    margin-top: 15px;
-}
 
-.track-slot{
-    height: 121px*@windamp_scale;
-    width: 110px*@windamp_scale;
-    image-rendering: pixelated;
-    //padding: 0.2em;
-    //margin: @track_space;
-}
-
-.track-name{
-    font-family: 'windamp';
-    color: rgb(0, 255, 0);
-    font-size: 14px;
-    position: relative;
-    left: 9px;
-    bottom: 13px;
-    text-rendering: auto;
-}
