@@ -20,7 +20,9 @@
                 <img src="assets/wings.gif"></img>
             </section>
             <section id="imgzone">
-                <img src="assets/imgzone full.gif"></img>
+                <video id="imgzone_vid">
+                    <source src="assets/imgzone complete.mp4" type="video/mp4">
+                </video>
             </section>
             <section class="ikuamp">
                 <div class="slot-container">
@@ -54,7 +56,7 @@
                         <button class="stop action" title="Stop" onclick="clickStop()" ></button>
                     </div>
                     <div class="player-controls">
-                        <input id="position" type="range" min="0" step="1" value="0" onchange="seekAudio()" oninput="seekAudio()" class="seek" style="touch-action: none;">
+                        <input id="position" type="range" min="0" max="50" step="1" value="0" onchange="seekAudio()" oninput="seekAudio()" class="seek">
                     </div>
                 </div>
             </div>
