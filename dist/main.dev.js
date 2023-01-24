@@ -7,21 +7,62 @@ var player = new _gapless.Gapless5({
 });
 player.addTrack("assets/touhou_2000s_audio.mp3");
 var audio_length = document.getElementById("audio_source").duration * 1000;
+/* Tracks */
+
 var imgzone = document.getElementById("imgzone_vid");
+
+function setTimeTracks(time) {
+  imgzone.currentTime = time;
+}
+
+function playsTracks() {
+  imgzone.play();
+}
+
+function pauseTracks() {
+  imgzone.pause();
+}
+
+function stopTracks() {
+  pauseTracks();
+  setTimeTracks(0);
+}
+/* Timer */
+
+
+var timer = document.querySelector(".audio-player .timer");
+
+function setTime(total_sec) {
+  var sec = total_sec % 60;
+  var min = Math.floor(total_sec / 60);
+
+  if (min < 10) {
+    min = "0".concat(min);
+  }
+
+  if (sec < 10) {
+    sec = "0".concat(sec);
+  }
+
+  timer.innerHTML = "".concat(min, ":").concat(sec);
+}
 /*
     Seeking Bar
 */
 
+
 var seeking_bar = document.querySelector(".audio-player .seeking-bar");
-var isSeeking = false;
+var is_seeking = false;
 seeking_bar.max = audio_length;
 seeking_bar.step = 60.0 / 95.0 * 1000;
 
 function seekAudio() {
-  isSeeking = true;
-  player.setPosition(seeking_bar.value);
-  imgzone.currentTime = seeking_bar.value / 1000;
-  isSeeking = false;
+  if (seeking_bar.value <= seeking_bar.max - seeking_bar.step) {
+    is_seeking = true;
+    player.setPosition(seeking_bar.value);
+    setTimeTracks(seeking_bar.value / 1000);
+    is_seeking = false;
+  }
 }
 
 seeking_bar.addEventListener("change", function () {
@@ -32,8 +73,9 @@ seeking_bar.addEventListener("input", function () {
 });
 
 player.ontimeupdate = function () {
-  if (!isSeeking) {
+  if (!is_seeking) {
     seeking_bar.value = player.getPosition();
+    setTime(Math.floor(player.getPosition() / 1000));
   }
 };
 /*
@@ -41,48 +83,61 @@ player.ontimeupdate = function () {
 */
 
 
-function playSources() {
-  player.play();
-  imgzone.play();
-}
-
 var play_btn = document.querySelector(".audio-player .play");
 var pause_btn = document.querySelector(".audio-player .pause");
-var stop_btn = document.querySelector(".audio-player .stop");
-play_btn.addEventListener("click", function () {
-  playSources();
+var stop_btn = document.querySelector(".audio-player .stop"); // PLAY
+
+function play() {
+  player.play();
+  playsTracks();
   player.setVolume(0.3);
-});
+  timer.classList.remove("pause");
+}
+
+play_btn.addEventListener("click", function () {
+  play();
+}); // PAUSE
+
+function pause() {
+  player.pause();
+  pauseTracks();
+  timer.classList.add("pause");
+}
+
 pause_btn.addEventListener("click", function () {
   if (player.isPlaying()) {
-    player.pause();
-    imgzone.pause();
+    pause();
   } else {
-    playSources();
+    play();
   }
-});
+}); // STOP
+
+function stop() {
+  player.stop(true);
+  stopTracks();
+  timer.classList.remove("pause");
+}
+
 stop_btn.addEventListener("click", function () {
-  player.stop();
-  imgzone.pause();
-  imgzone.currentTime = 0;
+  stop();
 });
 /* Reapeat */
 
 var repeat_btn = document.querySelector(".audio-player .repeat");
-var isReapeating = true;
+var is_reapeating = true;
 repeat_btn.addEventListener("click", function () {
-  if (isReapeating) {
+  if (is_reapeating) {
     repeat_btn.classList.remove("selected");
   } else {
     repeat_btn.classList.add("selected");
   }
 
   player.loop = !player.loop;
-  isReapeating = !isReapeating;
+  is_reapeating = !is_reapeating;
 });
 
 player.onfinishedtrack = function () {
-  if (isReapeating) {
-    imgzone.currentTime = 0;
+  if (is_reapeating) {
+    setTimeTracks(0);
   }
 };

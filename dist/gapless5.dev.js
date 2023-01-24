@@ -1759,6 +1759,8 @@ function Gapless5() {
 
       _this3.onstop(source.audioPath);
     }
+
+    _this3.ontimeupdate();
   }; // (PUBLIC) QUERIES AND CALLBACKS
 
 

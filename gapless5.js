@@ -1399,6 +1399,7 @@ export function Gapless5(options = {}, deprecated = {}) { // eslint-disable-line
       }
       this.onstop(source.audioPath);
     }
+    this.ontimeupdate();
   };
 
 

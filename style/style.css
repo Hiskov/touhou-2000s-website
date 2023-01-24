@@ -2,6 +2,10 @@
   font-family: 'windamp';
   src: url('../fonts/Sys Flash10.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'digital7';
+  src: url('../fonts/digital-7.ttf') format('truetype');
+}
 html {
   background-color: black;
 }
@@ -152,4 +156,16 @@ header {
 }
 .ikuamp .audio-player .repeat:active {
   background-image: url('../assets/repeat_push.png');
+}
+.ikuamp .audio-player .timer-container {
+  font-family: "digital7";
+  font-size: 20px;
+}
+.ikuamp .audio-player .timer-container .timer.pause {
+  animation: blink-animation 2s steps(2, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }

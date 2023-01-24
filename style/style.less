@@ -3,6 +3,11 @@
     src: url('../fonts/Sys Flash10.ttf') format('truetype');
 }  
 
+@font-face {
+    font-family: 'digital7';
+    src: url('../fonts/digital-7.ttf') format('truetype');
+}  
+
 
 html{
     background-color: black;
@@ -186,6 +191,21 @@ header{
             }
             &:active{
                 background-image: url('../assets/repeat_push.png');
+            }
+        }
+
+        .timer-container{
+            font-family: "digital7";
+            font-size: 20px;
+            .timer{
+                &.pause{
+                    @keyframes blink-animation {
+                        to {
+                            visibility: hidden;
+                        }
+                    }
+                    animation: blink-animation 2s steps(2, start) infinite;
+                }
             }
         }
     }
