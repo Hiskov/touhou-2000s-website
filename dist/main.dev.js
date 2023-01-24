@@ -1,38 +1,88 @@
 "use strict";
 
-var isSeeking = false;
-var seek = document.getElementById("position");
-var player = document.getElementById("player");
+var _gapless = require("./gapless5.js");
 
-function setupSeek() {
-  seek.max = player.duration;
-}
+var player = new _gapless.Gapless5({
+  loop: true
+});
+player.addTrack("assets/touhou_2000s_audio.mp3");
+var audio_length = document.getElementById("audio_source").duration * 1000;
+var imgzone = document.getElementById("imgzone_vid");
+/*
+    Seeking Bar
+*/
+
+var seeking_bar = document.querySelector(".audio-player .seeking-bar");
+var isSeeking = false;
+seeking_bar.max = audio_length;
+seeking_bar.step = 60.0 / 95.0 * 1000;
 
 function seekAudio() {
   isSeeking = true;
-  player.currentTime = seek.value;
+  player.setPosition(seeking_bar.value);
+  imgzone.currentTime = seeking_bar.value / 1000;
   isSeeking = false;
 }
 
-function initProgressBar() {
+seeking_bar.addEventListener("change", function () {
+  seekAudio();
+});
+seeking_bar.addEventListener("input", function () {
+  seekAudio();
+});
+
+player.ontimeupdate = function () {
   if (!isSeeking) {
-    seek.value = player.currentTime;
+    seeking_bar.value = player.getPosition();
   }
-}
+};
+/*
+    Actions
+*/
 
-var play = document.querySelector(".audio-player .actions .play");
-var pause = document.querySelector(".audio-player .actions .pause");
-var stop = document.querySelector(".audio-player .actions .stop");
 
-function clickPlay() {
+function playSources() {
   player.play();
+  imgzone.play();
 }
 
-function clickPause() {
-  player.pause();
-}
+var play_btn = document.querySelector(".audio-player .play");
+var pause_btn = document.querySelector(".audio-player .pause");
+var stop_btn = document.querySelector(".audio-player .stop");
+play_btn.addEventListener("click", function () {
+  playSources();
+  player.setVolume(0.3);
+});
+pause_btn.addEventListener("click", function () {
+  if (player.isPlaying()) {
+    player.pause();
+    imgzone.pause();
+  } else {
+    playSources();
+  }
+});
+stop_btn.addEventListener("click", function () {
+  player.stop();
+  imgzone.pause();
+  imgzone.currentTime = 0;
+});
+/* Reapeat */
 
-function clickStop() {
-  player.pause();
-  player.currentTime = 0;
-}
+var repeat_btn = document.querySelector(".audio-player .repeat");
+var isReapeating = true;
+repeat_btn.addEventListener("click", function () {
+  if (isReapeating) {
+    repeat_btn.classList.remove("selected");
+  } else {
+    repeat_btn.classList.add("selected");
+  }
+
+  player.loop = !player.loop;
+  isReapeating = !isReapeating;
+});
+
+player.onfinishedtrack = function () {
+  if (isReapeating) {
+    imgzone.currentTime = 0;
+  }
+};

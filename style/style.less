@@ -122,16 +122,17 @@ header{
             bottom: 30px;
         }
 
-        #position {
+        .seeking-bar {
             appearance: none;
             width: 248px;
             height: 10px;
             position: relative;
             left: 16px;
             background-image: url("../assets/player_bar.png");
+            margin-right: 5px;
         }
         
-        #position::-webkit-slider-thumb {
+        .seeking-bar::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
             width: 29px;
@@ -169,6 +170,22 @@ header{
                 &:active{
                     background-image: url('../assets/stop_push.png');
                 }
+            }
+        }
+
+        .repeat{
+            background-image: url('../assets/repeat.png');
+            width: 28px;
+            height: 15px;
+            left: 16px;
+            bottom: 31px;
+            position: relative;
+            border: none;
+            &.selected{
+                background-image: url('../assets/repeat_selected.png');
+            }
+            &:active{
+                background-image: url('../assets/repeat_push.png');
             }
         }
     }
