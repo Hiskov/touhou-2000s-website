@@ -5,7 +5,8 @@ var _gapless = require("./gapless5.js");
 var player = new _gapless.Gapless5({
   loop: true
 });
-player.addTrack("assets/touhou_2000s_audio.mp3");
+var song_file_name = "touhou_2000s_audio.mp3";
+player.addTrack("assets/".concat(song_file_name));
 var audio_length = document.getElementById("audio_source").duration * 1000;
 /*
     Tracks
@@ -40,7 +41,7 @@ function stopTracks() {
 
 var timer = document.querySelector(".audio-player .timer");
 
-function setTimer(total_sec) {
+function formatTime(total_sec) {
   total_sec = Math.floor(total_sec);
   var sec = total_sec % 60;
   var min = Math.floor(total_sec / 60);
@@ -53,12 +54,32 @@ function setTimer(total_sec) {
     sec = "0".concat(sec);
   }
 
-  timer.innerHTML = "".concat(min, ":").concat(sec);
+  return "".concat(min, ":").concat(sec);
 }
+
+function setTimer(total_sec) {
+  timer.innerHTML = formatTime(total_sec);
+}
+/*
+    Title Song Display
+*/
+
+
+var title_song = document.querySelector(".audio-player .song-name");
+
+function displaySongName() {
+  var text = "".concat(song_file_name, " (").concat(formatTime(audio_length / 1000), ")");
+  title_song.innerHTML = text + "      #      " + text + "      #      " + text;
+}
+
+function displayVolume(volume_pourcent) {
+  title_song.innerHTML = "".concat(volume_pourcent, "%");
+}
+
+displaySongName();
 /*
     Seeking Bar
 */
-
 
 var seeking_bar = document.querySelector(".audio-player .seeking-bar");
 var is_seeking = false;

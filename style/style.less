@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'windamp';
+    font-family: 'winamp';
     src: url('../fonts/Sys Flash10.ttf') format('truetype');
 }  
 
@@ -76,33 +76,33 @@ header{
 @track_space: 0; //coef
 @track_size: @tracks_width*(1/8);
 
-@windamp_scale: 1.0;
+@winamp_scale: 1.0;
 
 .ikuamp{
     background-image: url("../assets/ikudamp_layout.png");
     background-size: contain;
     background-repeat: no-repeat;
     image-rendering: pixelated;
-    width: 694px*@windamp_scale;
-    height: 308px*@windamp_scale;
+    width: 694px*@winamp_scale;
+    height: 308px*@winamp_scale;
     margin: auto;
 
     display: grid;
     align-items: center;
     grid-template-columns: repeat(6, @track_size);
     grid-template-rows: repeat(2, @track_size);
-    gap: 31px*@windamp_scale 20px*@windamp_scale;
+    gap: 31px*@winamp_scale 20px*@winamp_scale;
 
-    padding-top: 51px*@windamp_scale;
-    padding-left: 22px*@windamp_scale;
+    padding-top: 51px*@winamp_scale;
+    padding-left: 22px*@winamp_scale;
 
     .slot-container{
         position: relative;
     }
     
     .track-slot{
-        height: 121px*@windamp_scale;
-        width: 110px*@windamp_scale;
+        height: 121px*@winamp_scale;
+        width: 110px*@winamp_scale;
         image-rendering: pixelated;
         background-image: url("../assets/slot_ikuamp.png");
         text-align: center;
@@ -117,12 +117,12 @@ header{
     
     .track-name{
         text-align: center;
-        font-family: 'windamp';
+        font-family: 'winamp';
         color: rgb(0, 255, 0);
         font-size: 14px;
         position: relative;
-        left: 9px*@windamp_scale;
-        bottom: 13px*@windamp_scale;
+        left: 9px*@winamp_scale;
+        bottom: 13px*@winamp_scale;
         text-rendering: auto;
     }
 
@@ -141,7 +141,7 @@ header{
 
         .seeking-bar {
             appearance: none;
-            width: 248px;
+            width: 236px;
             height: 10px;
             background-image: url("../assets/player_bar.png");
         }
@@ -237,6 +237,30 @@ header{
             cursor: pointer;
             &:active{
                 background-image: url('../assets/volume_cursor_pushed.png');
+            }
+        }
+
+        .title-display{
+            background-image: url(../assets/title_display.png);
+            min-width: 159px;
+            height: 14px;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: clip;
+            .song-name{
+                font-family: "winamp";
+                font-size: 13px;
+                color: rgb(0, 255, 0);
+
+                @keyframes scrollText {
+                    from   { transform: translateX(0px); }
+                    to { transform: translateX(-159px); }
+                }
+                //animation: scrollText 3s linear infinite;
+
+                &.set-volume{
+
+                }
             }
         }
     }

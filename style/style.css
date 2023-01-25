@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'windamp';
+  font-family: 'winamp';
   src: url('../fonts/Sys Flash10.ttf') format('truetype');
 }
 @font-face {
@@ -87,7 +87,7 @@ header {
 }
 .ikuamp .track-name {
   text-align: center;
-  font-family: 'windamp';
+  font-family: 'winamp';
   color: #00ff00;
   font-size: 14px;
   position: relative;
@@ -108,7 +108,7 @@ header {
 }
 .ikuamp .audio-player .seeking-bar {
   appearance: none;
-  width: 248px;
+  width: 236px;
   height: 10px;
   background-image: url("../assets/player_bar.png");
 }
@@ -199,4 +199,25 @@ header {
 }
 .ikuamp .audio-player .volume-bar::-webkit-slider-thumb:active {
   background-image: url('../assets/volume_cursor_pushed.png');
+}
+.ikuamp .audio-player .title-display {
+  background-image: url(../assets/title_display.png);
+  min-width: 159px;
+  height: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+.ikuamp .audio-player .title-display .song-name {
+  font-family: "winamp";
+  font-size: 13px;
+  color: #00ff00;
+}
+@keyframes scrollText {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(-159px);
+  }
 }

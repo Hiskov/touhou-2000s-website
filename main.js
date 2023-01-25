@@ -1,7 +1,8 @@
 import {Gapless5} from "./gapless5.js"
 
 var player = new Gapless5({loop:true});
-player.addTrack("assets/touhou_2000s_audio.mp3")
+var song_file_name = "touhou_2000s_audio.mp3";
+player.addTrack(`assets/${song_file_name}`)
 var audio_length = document.getElementById("audio_source").duration*1000;
 
 
@@ -34,7 +35,7 @@ function stopTracks(){
 */
 var timer = document.querySelector(".audio-player .timer");
 
-function setTimer(total_sec){
+function formatTime(total_sec){
     total_sec = Math.floor(total_sec);
     let sec = total_sec%60;
     let min = Math.floor(total_sec/60);
@@ -45,9 +46,29 @@ function setTimer(total_sec){
     if (sec < 10) {
         sec = `0${sec}`;
     }
-
-    timer.innerHTML = `${min}:${sec}`;
+    return `${min}:${sec}`;
 }
+
+function setTimer(total_sec){
+    timer.innerHTML = formatTime(total_sec);
+}
+
+
+/*
+    Title Song Display
+*/
+var title_song = document.querySelector(".audio-player .song-name");
+
+function displaySongName(){
+    let text = `${song_file_name} (${formatTime(audio_length/1000)})`;
+    title_song.innerHTML = text + "      #      " + text + "      #      " + text;
+}
+
+function displayVolume(volume_pourcent){
+    title_song.innerHTML = `${volume_pourcent}%`;
+}
+
+displaySongName();
 
 
 /*
@@ -171,6 +192,8 @@ volume_bar.addEventListener("change", function(){
 volume_bar.addEventListener("input", function(){
     seekVolume();
 });
+
+
 
 
 
