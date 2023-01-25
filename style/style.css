@@ -4,7 +4,7 @@
 }
 @font-face {
   font-family: 'digital7';
-  src: url('../fonts/digital-7.ttf') format('truetype');
+  src: url('../fonts/digital-7.woff') format('woff');
 }
 html {
   background-color: black;
@@ -54,32 +54,39 @@ header {
   width: 20%;
 }
 .ikuamp {
-  background-image: url("../assets/windamp_layout.png");
+  background-image: url("../assets/ikudamp_layout.png");
   background-size: contain;
   background-repeat: no-repeat;
   image-rendering: pixelated;
-  width: 760px;
-  height: 323px;
+  width: 694px;
+  height: 308px;
   margin: auto;
   display: grid;
   align-items: center;
   grid-template-columns: repeat(6, 5.7375em);
   grid-template-rows: repeat(2, 5.7375em);
-  gap: 39px 35px;
-  padding-top: 40px;
-  padding-left: 15px;
+  gap: 31px 20px;
+  padding-top: 51px;
+  padding-left: 22px;
 }
 .ikuamp .slot-container {
   position: relative;
-  text-align: center;
-  margin-top: 15px;
 }
 .ikuamp .track-slot {
   height: 121px;
   width: 110px;
   image-rendering: pixelated;
+  background-image: url("../assets/slot_ikuamp.png");
+  text-align: center;
+  vertical-align: middle;
+}
+.ikuamp .track-slot video {
+  width: 97px;
+  height: 97px;
+  margin-top: 7px;
 }
 .ikuamp .track-name {
+  text-align: center;
   font-family: 'windamp';
   color: #00ff00;
   font-size: 14px;
@@ -91,17 +98,19 @@ header {
 .ikuamp .audio-player {
   display: flex;
 }
-.ikuamp .audio-player * {
-  bottom: 30px;
+.ikuamp .audio-player > div {
+  position: relative;
+  bottom: 29px;
+  margin-right: 5px;
+}
+.ikuamp .audio-player .player-controls {
+  bottom: 27px;
 }
 .ikuamp .audio-player .seeking-bar {
   appearance: none;
   width: 248px;
   height: 10px;
-  position: relative;
-  left: 16px;
   background-image: url("../assets/player_bar.png");
-  margin-right: 5px;
 }
 .ikuamp .audio-player .seeking-bar::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -114,13 +123,10 @@ header {
 }
 .ikuamp .audio-player .actions {
   display: flex;
-  margin-right: 5px;
 }
 .ikuamp .audio-player .actions * {
   height: 18px;
   width: 23px;
-  left: 16px;
-  bottom: 31px;
   position: relative;
   border: none;
 }
@@ -146,9 +152,6 @@ header {
   background-image: url('../assets/repeat.png');
   width: 28px;
   height: 15px;
-  left: 16px;
-  bottom: 31px;
-  position: relative;
   border: none;
 }
 .ikuamp .audio-player .repeat.selected {
@@ -158,8 +161,16 @@ header {
   background-image: url('../assets/repeat_push.png');
 }
 .ikuamp .audio-player .timer-container {
+  background-image: url(../assets/timer_display.png);
+  min-width: 50px;
+  min-height: 20px;
+}
+.ikuamp .audio-player .timer-container .timer {
+  display: block;
   font-family: "digital7";
-  font-size: 20px;
+  font-size: 19px;
+  color: #00ff00;
+  text-align: center;
 }
 .ikuamp .audio-player .timer-container .timer.pause {
   animation: blink-animation 2s steps(2, start) infinite;

@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: 'digital7';
-    src: url('../fonts/digital-7.ttf') format('truetype');
+    src: url('../fonts/digital-7.woff') format('woff');
 }  
 
 
@@ -79,38 +79,44 @@ header{
 @windamp_scale: 1.0;
 
 .ikuamp{
-    background-image: url("../assets/windamp_layout.png");
+    background-image: url("../assets/ikudamp_layout.png");
     background-size: contain;
     background-repeat: no-repeat;
     image-rendering: pixelated;
-    width: 760px*@windamp_scale;
-    height: 323px*@windamp_scale;
+    width: 694px*@windamp_scale;
+    height: 308px*@windamp_scale;
     margin: auto;
 
     display: grid;
     align-items: center;
     grid-template-columns: repeat(6, @track_size);
     grid-template-rows: repeat(2, @track_size);
-    gap: 39px*@windamp_scale 35px*@windamp_scale;
+    gap: 31px*@windamp_scale 20px*@windamp_scale;
 
-    padding-top: 40px*@windamp_scale;
-    padding-left: 15px*@windamp_scale;
+    padding-top: 51px*@windamp_scale;
+    padding-left: 22px*@windamp_scale;
 
     .slot-container{
         position: relative;
-        text-align: center;
-        margin-top: 15px*@windamp_scale;
     }
     
     .track-slot{
         height: 121px*@windamp_scale;
         width: 110px*@windamp_scale;
         image-rendering: pixelated;
-        //padding: 0.2em;
-        //margin: @track_space;
+        background-image: url("../assets/slot_ikuamp.png");
+        text-align: center;
+        vertical-align: middle;
+
+        video{
+            width: 97px;
+            height: 97px;
+            margin-top: 7px;
+        }
     }
     
     .track-name{
+        text-align: center;
         font-family: 'windamp';
         color: rgb(0, 255, 0);
         font-size: 14px;
@@ -123,18 +129,21 @@ header{
     .audio-player{
         display: flex;
 
-        *{
-            bottom: 30px;
+        > div{
+            position: relative;
+            bottom: 29px;
+            margin-right: 5px;
+        }
+
+        .player-controls{
+            bottom: 27px;
         }
 
         .seeking-bar {
             appearance: none;
             width: 248px;
             height: 10px;
-            position: relative;
-            left: 16px;
             background-image: url("../assets/player_bar.png");
-            margin-right: 5px;
         }
         
         .seeking-bar::-webkit-slider-thumb {
@@ -149,12 +158,9 @@ header{
 
         .actions{
             display: flex;
-            margin-right: 5px;
             *{
                 height: 18px;
                 width: 23px;
-                left: 16px;
-                bottom: 31px;
                 position: relative;
                 border: none;
             }
@@ -182,9 +188,6 @@ header{
             background-image: url('../assets/repeat.png');
             width: 28px;
             height: 15px;
-            left: 16px;
-            bottom: 31px;
-            position: relative;
             border: none;
             &.selected{
                 background-image: url('../assets/repeat_selected.png');
@@ -195,9 +198,15 @@ header{
         }
 
         .timer-container{
-            font-family: "digital7";
-            font-size: 20px;
+            background-image: url(../assets/timer_display.png);
+            min-width: 50px;
+            min-height: 20px;
             .timer{
+                display: block;
+                font-family: "digital7";
+                font-size: 19px;
+                color: rgb(0, 255, 0);
+                text-align: center;
                 &.pause{
                     @keyframes blink-animation {
                         to {

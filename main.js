@@ -6,15 +6,19 @@ var audio_length = document.getElementById("audio_source").duration*1000;
 
 /* Tracks */
 var imgzone = document.getElementById("imgzone_vid");
+var synth = document.getElementById("synth");
 
 function setTimeTracks(time){
     imgzone.currentTime = time;
+    synth.currentTime = time;
 }
 function playsTracks(){
     imgzone.play();
+    synth.play();
 }
 function pauseTracks(){
     imgzone.pause();
+    synth.pause();
 }
 function stopTracks(){
     pauseTracks();
@@ -46,7 +50,7 @@ function setTime(total_sec){
 var seeking_bar = document.querySelector(".audio-player .seeking-bar");
 var is_seeking = false;
 seeking_bar.max = audio_length;
-seeking_bar.step = (60.0/95.0)*1000
+seeking_bar.step = 1//(60.0/95.0)*1000
 
 function seekAudio() {
     if(seeking_bar.value <= seeking_bar.max-seeking_bar.step){
