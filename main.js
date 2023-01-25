@@ -4,7 +4,10 @@ var player = new Gapless5({loop:true});
 player.addTrack("assets/touhou_2000s_audio.mp3")
 var audio_length = document.getElementById("audio_source").duration*1000;
 
-/* Tracks */
+
+/*
+    Tracks
+*/
 var imgzone = document.getElementById("imgzone_vid");
 var synth = document.getElementById("synth");
 
@@ -26,10 +29,13 @@ function stopTracks(){
 }
 
 
-/* Timer */
+/*
+    Timer
+*/
 var timer = document.querySelector(".audio-player .timer");
 
-function setTime(total_sec){
+function setTimer(total_sec){
+    total_sec = Math.floor(total_sec);
     let sec = total_sec%60;
     let min = Math.floor(total_sec/60);
 
@@ -50,13 +56,14 @@ function setTime(total_sec){
 var seeking_bar = document.querySelector(".audio-player .seeking-bar");
 var is_seeking = false;
 seeking_bar.max = audio_length;
-seeking_bar.step = 1//(60.0/95.0)*1000
+seeking_bar.step = 1;   //(60.0/95.0)*1000
 
 function seekAudio() {
     if(seeking_bar.value <= seeking_bar.max-seeking_bar.step){
         is_seeking = true;
         player.setPosition(seeking_bar.value);
-        setTimeTracks((seeking_bar.value)/1000);
+        setTimeTracks(seeking_bar.value/1000);
+        setTimer(seeking_bar.value/1000);
         is_seeking = false;
     }
 }
@@ -71,7 +78,7 @@ seeking_bar.addEventListener("input", function(){
 player.ontimeupdate = () => {
     if (!is_seeking) {
         seeking_bar.value = player.getPosition();
-        setTime(Math.floor(player.getPosition()/1000));
+        setTimer(player.getPosition()/1000);
     }
 }
 
@@ -87,7 +94,6 @@ var stop_btn = document.querySelector(".audio-player .stop");
 function play(){
     player.play();
     playsTracks();
-    player.setVolume(0.3);
     timer.classList.remove("pause");
 }
 play_btn.addEventListener("click", function(){
@@ -121,7 +127,9 @@ stop_btn.addEventListener("click", function(){
 });
 
 
-/* Reapeat */
+/*
+    Reapeat
+*/
 var repeat_btn = document.querySelector(".audio-player .repeat");
 var is_reapeating = true;
 
@@ -141,3 +149,35 @@ player.onfinishedtrack = () => {
         setTimeTracks(0);
     }
 }
+
+
+/*
+    Volume
+*/
+var volume_bar = document.querySelector(".audio-player .volume-bar");
+
+function seekVolume() {
+    let vol = volume_bar.value;
+    if(vol <= volume_bar.max*1){
+        player.setVolume(vol/100);
+        console.log(vol);
+        volume_bar.style.backgroundPosition = `0px ${-15*Math.floor(27*(vol/100))}px`
+    }
+}
+
+volume_bar.addEventListener("change", function(){
+    seekVolume();
+});
+volume_bar.addEventListener("input", function(){
+    seekVolume();
+});
+
+
+
+/* INIT */
+function init(){
+    volume_bar.value = 25;
+    seekVolume();
+}
+
+init();

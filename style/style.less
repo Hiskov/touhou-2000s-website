@@ -135,7 +135,7 @@ header{
             margin-right: 5px;
         }
 
-        .player-controls{
+        .player-control{
             bottom: 27px;
         }
 
@@ -154,6 +154,9 @@ header{
             background-image: url('../assets/player_cursor.png');
             background-position: center center;
             cursor: pointer;
+            &:active{
+                background-image: url('../assets/player_cursor_pushed.png');
+            }
         }
 
         .actions{
@@ -215,6 +218,25 @@ header{
                     }
                     animation: blink-animation 2s steps(2, start) infinite;
                 }
+            }
+        }
+
+        .volume-bar {
+            appearance: none;
+            width: 68px;
+            height: 420px/28px-2;
+            background-image: url("../assets/volume_bg.png");
+        }
+        
+        .volume-bar::-webkit-slider-thumb {
+            appearance: none;
+            width: 14px;
+            height: 11px;
+            background-image: url('../assets/volume_cursor.png');
+            background-position: center center;
+            cursor: pointer;
+            &:active{
+                background-image: url('../assets/volume_cursor_pushed.png');
             }
         }
     }
