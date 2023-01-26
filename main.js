@@ -11,18 +11,22 @@ var audio_length = document.getElementById("audio_source").duration*1000;
 */
 var imgzone = document.getElementById("imgzone_vid");
 var synth = document.getElementById("synth");
+var synth_echo = document.getElementById("synth-echo");
 
 function setTimeTracks(time){
     imgzone.currentTime = time;
     synth.currentTime = time;
+    synth_echo.currentTime = time;
 }
 function playsTracks(){
     imgzone.play();
     synth.play();
+    synth_echo.play();
 }
 function pauseTracks(){
     imgzone.pause();
     synth.pause();
+    synth_echo.pause();
 }
 function stopTracks(){
     pauseTracks();
@@ -181,7 +185,6 @@ function seekVolume() {
     let vol = volume_bar.value;
     if(vol <= volume_bar.max*1){
         player.setVolume(vol/100);
-        console.log(vol);
         volume_bar.style.backgroundPosition = `0px ${-15*Math.floor(27*(vol/100))}px`
     }
 }

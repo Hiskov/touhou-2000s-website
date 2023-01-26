@@ -109,9 +109,18 @@ header{
         vertical-align: middle;
 
         video{
-            width: 97px;
-            height: 97px;
-            margin-top: 7px;
+            width: 100px;
+            height: 100px;
+            margin-top: 6px;
+        }
+
+        img{
+            position: absolute;
+            height: 121px*@winamp_scale;
+            width: 110px*@winamp_scale;
+            image-rendering: pixelated;
+            left: -0px;
+            opacity: 60%;
         }
     }
     
@@ -258,9 +267,9 @@ header{
                 }
                 //animation: scrollText 3s linear infinite;
 
-                &.set-volume{
+                /*&.set-volume{
 
-                }
+                }*/
             }
         }
     }
