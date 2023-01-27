@@ -12,21 +12,33 @@ var audio_length = document.getElementById("audio_source").duration*1000;
 var imgzone = document.getElementById("imgzone_vid");
 var synth = document.getElementById("synth");
 var synth_echo = document.getElementById("synth-echo");
+var bass = document.getElementById("bass");
+var snare = document.getElementById("snare");
+var kick = document.getElementById("kick");
 
 function setTimeTracks(time){
     imgzone.currentTime = time;
     synth.currentTime = time;
     synth_echo.currentTime = time;
+    bass.currentTime = time;
+    snare.currentTime = time;
+    kick.currentTime = time;
 }
 function playsTracks(){
     imgzone.play();
     synth.play();
     synth_echo.play();
+    bass.play();
+    snare.play();
+    kick.play();
 }
 function pauseTracks(){
     imgzone.pause();
     synth.pause();
     synth_echo.pause();
+    bass.pause();
+    snare.pause();
+    kick.pause();
 }
 function stopTracks(){
     pauseTracks();
