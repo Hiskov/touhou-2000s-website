@@ -257,19 +257,22 @@ header{
             overflow: hidden;
             text-overflow: clip;
             .song-name{
+                position: relative;
+                bottom: 2px;
                 font-family: "winamp";
-                font-size: 13px;
+                font-size: 14px;
                 color: rgb(0, 255, 0);
 
                 @keyframes scrollText {
-                    from   { transform: translateX(0px); }
-                    to { transform: translateX(-159px); }
+                    from   { transform: translateX(100%); }
+                    to { transform: translateX(-100%); }
                 }
-                //animation: scrollText 3s linear infinite;
+                animation: scrollText 6s linear infinite;
 
-                /*&.set-volume{
-
-                }*/
+                &.set-volume{
+                    animation: none;
+                    text-align: center;
+                }
             }
         }
     }

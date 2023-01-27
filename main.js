@@ -76,12 +76,15 @@ function setTimer(total_sec){
 var title_song = document.querySelector(".audio-player .song-name");
 
 function displaySongName(){
-    let text = `${song_file_name} (${formatTime(audio_length/1000)})`;
-    title_song.innerHTML = text + "      #      " + text + "      #      " + text;
+    let text = `${song_file_name} (${formatTime(audio_length/1000)})`.toUpperCase();
+    title_song.innerHTML = text;
+    title_song.classList.remove("set-volume")
+    console.log("MUKYUUUUU");
 }
 
 function displayVolume(volume_pourcent){
-    title_song.innerHTML = `${volume_pourcent}%`;
+    title_song.innerHTML = `VOLUME: ${volume_pourcent}%`;
+    title_song.classList.add("set-volume")
 }
 
 displaySongName();
@@ -198,11 +201,13 @@ function seekVolume() {
     if(vol <= volume_bar.max*1){
         player.setVolume(vol/100);
         volume_bar.style.backgroundPosition = `0px ${-15*Math.floor(27*(vol/100))}px`
+        displayVolume(vol);
+        console.log("AAAAA");
     }
 }
 
 volume_bar.addEventListener("change", function(){
-    seekVolume();
+    displaySongName();
 });
 volume_bar.addEventListener("input", function(){
     seekVolume();
@@ -212,10 +217,12 @@ volume_bar.addEventListener("input", function(){
 
 
 
+
 /* INIT */
 function init(){
     volume_bar.value = 25;
     seekVolume();
+    displaySongName()
 }
 
 init();

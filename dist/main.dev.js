@@ -14,20 +14,36 @@ var audio_length = document.getElementById("audio_source").duration * 1000;
 
 var imgzone = document.getElementById("imgzone_vid");
 var synth = document.getElementById("synth");
+var synth_echo = document.getElementById("synth-echo");
+var bass = document.getElementById("bass");
+var snare = document.getElementById("snare");
+var kick = document.getElementById("kick");
 
 function setTimeTracks(time) {
   imgzone.currentTime = time;
   synth.currentTime = time;
+  synth_echo.currentTime = time;
+  bass.currentTime = time;
+  snare.currentTime = time;
+  kick.currentTime = time;
 }
 
 function playsTracks() {
   imgzone.play();
   synth.play();
+  synth_echo.play();
+  bass.play();
+  snare.play();
+  kick.play();
 }
 
 function pauseTracks() {
   imgzone.pause();
   synth.pause();
+  synth_echo.pause();
+  bass.pause();
+  snare.pause();
+  kick.pause();
 }
 
 function stopTracks() {
@@ -68,12 +84,15 @@ function setTimer(total_sec) {
 var title_song = document.querySelector(".audio-player .song-name");
 
 function displaySongName() {
-  var text = "".concat(song_file_name, " (").concat(formatTime(audio_length / 1000), ")");
-  title_song.innerHTML = text + "      #      " + text + "      #      " + text;
+  var text = "".concat(song_file_name, " (").concat(formatTime(audio_length / 1000), ")").toUpperCase();
+  title_song.innerHTML = text;
+  title_song.classList.remove("set-volume");
+  console.log("MUKYUUUUU");
 }
 
 function displayVolume(volume_pourcent) {
-  title_song.innerHTML = "".concat(volume_pourcent, "%");
+  title_song.innerHTML = "VOLUME: ".concat(volume_pourcent, "%");
+  title_song.classList.add("set-volume");
 }
 
 displaySongName();
@@ -185,13 +204,14 @@ function seekVolume() {
 
   if (vol <= volume_bar.max * 1) {
     player.setVolume(vol / 100);
-    console.log(vol);
     volume_bar.style.backgroundPosition = "0px ".concat(-15 * Math.floor(27 * (vol / 100)), "px");
+    displayVolume(vol);
+    console.log("AAAAA");
   }
 }
 
 volume_bar.addEventListener("change", function () {
-  seekVolume();
+  displaySongName();
 });
 volume_bar.addEventListener("input", function () {
   seekVolume();
@@ -201,6 +221,7 @@ volume_bar.addEventListener("input", function () {
 function init() {
   volume_bar.value = 25;
   seekVolume();
+  displaySongName();
 }
 
 init();

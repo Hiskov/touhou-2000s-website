@@ -217,18 +217,22 @@ header {
   text-overflow: clip;
 }
 .ikuamp .audio-player .title-display .song-name {
+  position: relative;
+  bottom: 2px;
   font-family: "winamp";
-  font-size: 13px;
+  font-size: 14px;
   color: #00ff00;
-  /*&.set-volume{
-
-                }*/
+  animation: scrollText 6s linear infinite;
 }
 @keyframes scrollText {
   from {
-    transform: translateX(0px);
+    transform: translateX(100%);
   }
   to {
-    transform: translateX(-159px);
+    transform: translateX(-100%);
   }
+}
+.ikuamp .audio-player .title-display .song-name.set-volume {
+  animation: none;
+  text-align: center;
 }
