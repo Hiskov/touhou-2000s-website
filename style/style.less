@@ -155,8 +155,20 @@ header{
             background-image: url("../assets/player_bar.png");
         }
         
+        
+        .seeking-bar::-moz-range-thumb {
+            border: none;
+            appearance: none;
+            width: 29px;
+            height: 10px;
+            background-image: url('../assets/player_cursor.png');
+            background-position: center center;
+            cursor: pointer;
+            &:active{
+                background-image: url('../assets/player_cursor_pushed.png');
+            }
+        }
         .seeking-bar::-webkit-slider-thumb {
-            -webkit-appearance: none;
             appearance: none;
             width: 29px;
             height: 10px;
@@ -212,7 +224,7 @@ header{
         .timer-container{
             background-image: url(../assets/timer_display.png);
             min-width: 50px;
-            min-height: 20px;
+            max-height: 20px;
             .timer{
                 display: block;
                 font-family: "digital7";
@@ -237,8 +249,21 @@ header{
             background-image: url("../assets/volume_bg.png");
         }
         
+        .volume-bar::-moz-range-thumb {
+            appearance: none;
+            border: none;
+            width: 14px;
+            height: 11px;
+            background-image: url('../assets/volume_cursor.png');
+            background-position: center center;
+            cursor: pointer;
+            &:active{
+                background-image: url('../assets/volume_cursor_pushed.png');
+            }
+        }
         .volume-bar::-webkit-slider-thumb {
             appearance: none;
+            border: none;
             width: 14px;
             height: 11px;
             background-image: url('../assets/volume_cursor.png');

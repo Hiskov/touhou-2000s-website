@@ -120,8 +120,19 @@ header {
   height: 10px;
   background-image: url("../assets/player_bar.png");
 }
+.ikuamp .audio-player .seeking-bar::-moz-range-thumb {
+  border: none;
+  appearance: none;
+  width: 29px;
+  height: 10px;
+  background-image: url('../assets/player_cursor.png');
+  background-position: center center;
+  cursor: pointer;
+}
+.ikuamp .audio-player .seeking-bar::-moz-range-thumb:active {
+  background-image: url('../assets/player_cursor_pushed.png');
+}
 .ikuamp .audio-player .seeking-bar::-webkit-slider-thumb {
-  -webkit-appearance: none;
   appearance: none;
   width: 29px;
   height: 10px;
@@ -174,7 +185,7 @@ header {
 .ikuamp .audio-player .timer-container {
   background-image: url(../assets/timer_display.png);
   min-width: 50px;
-  min-height: 20px;
+  max-height: 20px;
 }
 .ikuamp .audio-player .timer-container .timer {
   display: block;
@@ -197,8 +208,21 @@ header {
   height: 13px;
   background-image: url("../assets/volume_bg.png");
 }
+.ikuamp .audio-player .volume-bar::-moz-range-thumb {
+  appearance: none;
+  border: none;
+  width: 14px;
+  height: 11px;
+  background-image: url('../assets/volume_cursor.png');
+  background-position: center center;
+  cursor: pointer;
+}
+.ikuamp .audio-player .volume-bar::-moz-range-thumb:active {
+  background-image: url('../assets/volume_cursor_pushed.png');
+}
 .ikuamp .audio-player .volume-bar::-webkit-slider-thumb {
   appearance: none;
+  border: none;
   width: 14px;
   height: 11px;
   background-image: url('../assets/volume_cursor.png');
