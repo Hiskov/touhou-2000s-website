@@ -105,16 +105,17 @@ header {
 }
 .ikuamp .audio-player {
   display: flex;
+  align-items: center;
 }
 .ikuamp .audio-player > div {
   position: relative;
-  bottom: 29px;
+  bottom: 30px;
   margin-right: 5px;
 }
 .ikuamp .audio-player .player-control {
-  bottom: 27px;
+  height: 15px;
 }
-.ikuamp .audio-player .seeking-bar {
+.ikuamp .audio-player .player-control .seeking-bar {
   appearance: none;
   width: 236px;
   height: 10px;
@@ -170,29 +171,32 @@ header {
 .ikuamp .audio-player .actions .stop:active {
   background-image: url('../assets/stop_push.png');
 }
-.ikuamp .audio-player .repeat {
+.ikuamp .audio-player .repeat .repeat-btn {
   background-image: url('../assets/repeat.png');
   width: 28px;
   height: 15px;
+  position: relative;
+  display: block;
   border: none;
 }
-.ikuamp .audio-player .repeat.selected {
+.ikuamp .audio-player .repeat .repeat-btn.selected {
   background-image: url('../assets/repeat_selected.png');
 }
-.ikuamp .audio-player .repeat:active {
+.ikuamp .audio-player .repeat .repeat-btn:active {
   background-image: url('../assets/repeat_push.png');
 }
 .ikuamp .audio-player .timer-container {
   background-image: url(../assets/timer_display.png);
   min-width: 50px;
-  max-height: 20px;
+  height: 20px;
 }
 .ikuamp .audio-player .timer-container .timer {
-  display: block;
+  position: relative;
   font-family: "digital7";
   font-size: 19px;
   color: #00ff00;
   text-align: center;
+  bottom: 2px;
 }
 .ikuamp .audio-player .timer-container .timer.pause {
   animation: blink-animation 2s steps(2, start) infinite;
@@ -207,6 +211,8 @@ header {
   width: 68px;
   height: 13px;
   background-image: url("../assets/volume_bg.png");
+  top: 2px;
+  position: relative;
 }
 .ikuamp .audio-player .volume-bar::-moz-range-thumb {
   appearance: none;

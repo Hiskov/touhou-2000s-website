@@ -137,24 +137,25 @@ header{
 
     .audio-player{
         display: flex;
+        align-items: center;
+        //justify-content: center;
 
         > div{
             position: relative;
-            bottom: 29px;
+            bottom: 30px;
             margin-right: 5px;
         }
 
         .player-control{
-            bottom: 27px;
+            height: 15px;
+            .seeking-bar {
+                appearance: none;
+                width: 236px;
+                height: 10px;
+                background-image: url("../assets/player_bar.png");
+            }
         }
 
-        .seeking-bar {
-            appearance: none;
-            width: 236px;
-            height: 10px;
-            background-image: url("../assets/player_bar.png");
-        }
-        
         
         .seeking-bar::-moz-range-thumb {
             border: none;
@@ -209,28 +210,34 @@ header{
         }
 
         .repeat{
-            background-image: url('../assets/repeat.png');
-            width: 28px;
-            height: 15px;
-            border: none;
-            &.selected{
-                background-image: url('../assets/repeat_selected.png');
-            }
-            &:active{
-                background-image: url('../assets/repeat_push.png');
+            .repeat-btn{
+                background-image: url('../assets/repeat.png');
+                width: 28px;
+                height: 15px;
+                position: relative;
+                display: block;
+                border: none;
+                //top: 2px;
+                &.selected{
+                    background-image: url('../assets/repeat_selected.png');
+                }
+                &:active{
+                    background-image: url('../assets/repeat_push.png');
+                }
             }
         }
 
         .timer-container{
             background-image: url(../assets/timer_display.png);
             min-width: 50px;
-            max-height: 20px;
+            height: 20px;
             .timer{
-                display: block;
+                position: relative;
                 font-family: "digital7";
                 font-size: 19px;
                 color: rgb(0, 255, 0);
                 text-align: center;
+                bottom: 2px;
                 &.pause{
                     @keyframes blink-animation {
                         to {
@@ -247,6 +254,8 @@ header{
             width: 68px;
             height: 420px/28px-2;
             background-image: url("../assets/volume_bg.png");
+            top: 2px;
+            position: relative;
         }
         
         .volume-bar::-moz-range-thumb {

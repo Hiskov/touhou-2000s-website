@@ -7,9 +7,14 @@ var imgzone = document.getElementById("imgzone_vid");
 var synth = document.getElementById("synth");
 var synth_echo = document.getElementById("synth-echo");
 var bass = document.getElementById("bass");
-var snare = document.getElementById("snare");
-var snare2 = document.getElementById("snare-2");
+var snare = document.getElementById("snare1");
+var snare2 = document.getElementById("snare2");
 var kick = document.getElementById("kick");
+var hi_hat = document.getElementById("hi-hat");
+var strings1 = document.getElementById("strings1");
+var strings2 = document.getElementById("strings2");
+var strings3 = document.getElementById("strings3");
+var cirno = document.getElementById("cirno");
 
 var timer = document.querySelector(".audio-player .timer");
 
@@ -22,7 +27,7 @@ var play_btn = document.querySelector(".audio-player .play");
 var pause_btn = document.querySelector(".audio-player .pause");
 var stop_btn = document.querySelector(".audio-player .stop");
 
-var repeat_btn = document.querySelector(".audio-player .repeat");
+var repeat_btn = document.querySelector(".audio-player .repeat-btn");
 
 var volume_bar = document.querySelector(".audio-player .volume-bar");
 
@@ -64,11 +69,9 @@ init();
     Video Controls
 */
 function play(){
-    if(!all_loaded){
+    if(!player.isPlaying() && !play_flag){
         play_flag = true;
-    }
-    else{
-        realplay();
+        seekAudio(seeking_bar.value);
     }
 }
 function realplay(){ // carrément
@@ -77,9 +80,11 @@ function realplay(){ // carrément
     timer.classList.remove("pause");
 }
 function pause(){
-    player.pause();
-    pauseTracks();
-    timer.classList.add("pause");
+    if(!play_flag){
+        player.pause();
+        pauseTracks();
+        timer.classList.add("pause");
+    }
 }
 function stop(){
     player.stop(true);
@@ -92,7 +97,6 @@ function stop(){
 /*
     Tracks
 */
-
 function oncanplaythroughRoutine(){
     console.log("canplaythrough");
     if(play_flag){
@@ -112,6 +116,12 @@ function setTimeTracks(time){
     snare.currentTime = time;
     kick.currentTime = time;
     snare2.currentTime = time;
+    hi_hat.currentTime = time;
+    telephone.currentTime = time;
+    strings1.currentTime = time;
+    strings2.currentTime = time;
+    strings3.currentTime = time;
+    cirno.currentTime = time;
 }
 function playsTracks(){
     imgzone.play();
@@ -121,6 +131,12 @@ function playsTracks(){
     snare.play();
     kick.play();
     snare2.play();
+    hi_hat.play();
+    telephone.play();
+    strings1.play();
+    strings2.play();
+    strings3.play();
+    cirno.play();
 }
 function pauseTracks(){
     imgzone.pause();
@@ -130,6 +146,12 @@ function pauseTracks(){
     snare.pause();
     kick.pause();
     snare2.pause();
+    hi_hat.pause();
+    telephone.pause();
+    strings1.pause();
+    strings2.pause();
+    strings3.pause();
+    cirno.pause();
 }
 function stopTracks(){
     pauseTracks();
@@ -187,18 +209,20 @@ function seekAudio(seeking_bar_value) {
 }
 
 seeking_bar.addEventListener("change", function(){
-    if(seeking_bar.value != 0){
-        play();
-    }
-    else{
-        realplay();
+    if(player.isPlaying()){
+        pause();
+        if(seeking_bar.value != 0){
+            play();
+        }
+        else{
+            oncanplaythroughRoutine();
+        }
     }
 });
 seeking_bar.addEventListener("input", function(){
-    pause();
     all_loaded = false;
     if( seeking_bar.value <= seeking_bar.max-seeking_bar.step){
-        seekAudio(seeking_bar_value)
+        seekAudio(seeking_bar.value)
     }
 });
 
