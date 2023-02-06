@@ -14,28 +14,27 @@ body {
   font-size: medium;
 }
 .main {
-  background-image: url("../assets/aquagalaxy_small.gif");
+  background-image: url("../assets/Background.gif");
+  background-size: 120%;
   width: 90em;
-  height: 100%;
   margin: auto;
+  image-rendering: pixelated;
 }
 header {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.remilia {
-  width: 12%;
-  padding-bottom: 1.7em;
-  image-rendering: pixelated;
+.yinyang {
+  width: 6%;
 }
 #title {
   display: block;
-  width: 35%;
+  width: 25%;
   height: auto;
 }
 #wings {
-  margin-top: -3em;
+  margin-top: -2em;
   margin-bottom: -4em;
 }
 #wings img {
@@ -52,6 +51,10 @@ header {
   display: block;
   margin: auto;
   width: 20%;
+}
+#banner {
+  height: 48px;
+  margin-bottom: 2em;
 }
 .ikuamp {
   background-image: url("../assets/ikudamp_layout.png");
@@ -171,20 +174,6 @@ header {
 .ikuamp .audio-player .actions .stop:active {
   background-image: url('../assets/stop_push.png');
 }
-.ikuamp .audio-player .repeat .repeat-btn {
-  background-image: url('../assets/repeat.png');
-  width: 28px;
-  height: 15px;
-  position: relative;
-  display: block;
-  border: none;
-}
-.ikuamp .audio-player .repeat .repeat-btn.selected {
-  background-image: url('../assets/repeat_selected.png');
-}
-.ikuamp .audio-player .repeat .repeat-btn:active {
-  background-image: url('../assets/repeat_push.png');
-}
 .ikuamp .audio-player .timer-container {
   background-image: url(../assets/timer_display.png);
   min-width: 50px;
@@ -265,4 +254,30 @@ header {
 .ikuamp .audio-player .title-display .song-name.set-volume {
   animation: none;
   text-align: center;
+}
+.ikuamp .audio-player .repeat .repeat-btn {
+  background-image: url('../assets/repeat.png');
+  width: 28px;
+  height: 15px;
+  position: relative;
+  display: block;
+  border: none;
+}
+.ikuamp .audio-player .repeat .repeat-btn.selected {
+  background-image: url('../assets/repeat_selected.png');
+}
+.ikuamp .audio-player .repeat .repeat-btn:active {
+  background-image: url('../assets/repeat_push.png');
+}
+.ikuamp .audio-player .logo .logo-btn {
+  width: 40px;
+  position: relative;
+  display: block;
+  border: none;
+  top: -8px;
+  image-rendering: auto;
+}
+.ikuamp .audio-player .logo .logo-btn:hover {
+  width: 47px;
+  left: -2px;
 }

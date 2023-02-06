@@ -215,6 +215,7 @@ seeking_bar.addEventListener("change", function(){
             play();
         }
         else{
+            play();
             oncanplaythroughRoutine();
         }
     }

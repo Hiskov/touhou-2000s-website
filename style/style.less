@@ -22,10 +22,11 @@ body{
 @total_width: 90em;
 
 .main{
-    background-image: url("../assets/aquagalaxy_small.gif");
+    background-image: url("../assets/Background.gif");
+    background-size: 120%;
     width: @total_width;
-    height: 100%;
     margin: auto;
+    image-rendering: pixelated;
 }
 
 header{
@@ -36,15 +37,13 @@ header{
 
 
 
-.remilia{
-    width: 12%;
-    padding-bottom: 1.7em;
-    image-rendering: pixelated;
+.yinyang{
+    width: 6%;
 }
 
 #title{
     display: block;
-    width: 35%;
+    width: 25%;
     height: auto;
 }
 
@@ -55,7 +54,7 @@ header{
         width: 40%;
         image-rendering: pixelated;
     }
-    margin-top: -3em;
+    margin-top: -2em;
     margin-bottom: -4em;
 }
 
@@ -66,6 +65,11 @@ header{
         width: 20%;
     }
     margin-top: 3em;
+    margin-bottom: 2em;
+}
+
+#banner{
+    height: 48px;
     margin-bottom: 2em;
 }
 
@@ -209,24 +213,6 @@ header{
             }
         }
 
-        .repeat{
-            .repeat-btn{
-                background-image: url('../assets/repeat.png');
-                width: 28px;
-                height: 15px;
-                position: relative;
-                display: block;
-                border: none;
-                //top: 2px;
-                &.selected{
-                    background-image: url('../assets/repeat_selected.png');
-                }
-                &:active{
-                    background-image: url('../assets/repeat_push.png');
-                }
-            }
-        }
-
         .timer-container{
             background-image: url(../assets/timer_display.png);
             min-width: 50px;
@@ -306,6 +292,38 @@ header{
                 &.set-volume{
                     animation: none;
                     text-align: center;
+                }
+            }
+        }
+
+        .repeat{
+            .repeat-btn{
+                background-image: url('../assets/repeat.png');
+                width: 28px;
+                height: 15px;
+                position: relative;
+                display: block;
+                border: none;
+                &.selected{
+                    background-image: url('../assets/repeat_selected.png');
+                }
+                &:active{
+                    background-image: url('../assets/repeat_push.png');
+                }
+            }
+        }
+
+        .logo{
+            .logo-btn{
+                width: 40px;
+                position: relative;
+                display: block;
+                border: none;
+                top: -8px;
+                image-rendering: auto;
+                &:hover{
+                    width: 47px;
+                    left: -2px;
                 }
             }
         }
