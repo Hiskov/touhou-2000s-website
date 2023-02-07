@@ -1,7 +1,7 @@
 import {Gapless5} from "./gapless5.js"
 
 var player = new Gapless5({loop:true});
-var song_file_name = "touhou_2000s_audio.wav";
+var song_file_name = "touhou_2000s_fanpage_ytpmv_audio.mp3";
 
 var imgzone = document.getElementById("imgzone_vid");
 var synth = document.getElementById("synth");
@@ -72,11 +72,13 @@ function play(){
     if(!player.isPlaying() && !play_flag){
         play_flag = true;
         seekAudio(seeking_bar.value);
+        displayLoading();
     }
 }
 function realplay(){ // carrément
     player.play();
     playsTracks();
+    displaySongName();
     timer.classList.remove("pause");
 }
 function pause(){
@@ -188,23 +190,30 @@ function setTimer(total_sec){
 function displaySongName(){
     let text = `${song_file_name} (${formatTime(audio_length/1000)})`.toUpperCase();
     title_song.innerHTML = text;
-    title_song.classList.remove("set-volume")
+    title_song.classList.replace("set-volume", "base");
+    title_song.classList.replace("loading", "base");
 }
 
 function displayVolume(volume_pourcent){
     title_song.innerHTML = `VOLUME: ${volume_pourcent}%`;
-    title_song.classList.add("set-volume")
+    title_song.classList.replace("base", "set-volume");
+}
+
+function displayLoading(){
+    title_song.innerHTML = `LOADING...`;
+    title_song.classList.replace("base", "loading");
 }
 
 
 /*
     Seeking Bar
 */
-function seekAudio(seeking_bar_value) {
+function seekAudio(seek_value) {
+    all_loaded = false;
     is_seeking = true;
-    player.setPosition(seeking_bar_value);
-    setTimeTracks(seeking_bar_value/1000.0);
-    setTimer(seeking_bar_value/1000);
+    player.setPosition(seek_value);
+    setTimeTracks(seek_value/1000.0);
+    setTimer(seek_value/1000);
     is_seeking = false;
 }
 
@@ -221,9 +230,8 @@ seeking_bar.addEventListener("change", function(){
     }
 });
 seeking_bar.addEventListener("input", function(){
-    all_loaded = false;
     if( seeking_bar.value <= seeking_bar.max-seeking_bar.step){
-        seekAudio(seeking_bar.value)
+        seekAudio(seeking_bar.value);
     }
 });
 
@@ -245,13 +253,16 @@ play_btn.addEventListener("click", function(){
 });
 
 // PAUSE
-pause_btn.addEventListener("click", function(){
+function pauseAction(){
     if(player.isPlaying()){
         pause();
     }
     else{
         play();
     }
+}
+pause_btn.addEventListener("click", function(){
+    pauseAction();
 });
 
 // STOP
@@ -299,3 +310,27 @@ volume_bar.addEventListener("change", function(){
 volume_bar.addEventListener("input", function(){
     seekVolume();
 });
+
+
+
+/*
+    HOTKEYS
+*/
+
+// Handlers
+function keyup_handler(e) {
+    if(e.key === ' ') {
+        pauseAction();
+    }
+    if(e.key === ' ' && e.target == document.body) {
+        e.preventDefault();
+    }
+}
+function keydown_handler(e) {
+    if(e.key === ' ' && e.target == document.body) {
+        e.preventDefault();
+    }
+}
+
+document.addEventListener('keyup', keyup_handler, false);
+document.addEventListener('keydown', keydown_handler, false);

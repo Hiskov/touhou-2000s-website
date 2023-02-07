@@ -16,12 +16,14 @@ body {
 .main {
   background-image: url("../assets/Background.gif");
   background-size: 120%;
+  background-repeat: no-repeat;
   width: 90em;
   margin: auto;
   image-rendering: pixelated;
 }
 * ::-webkit-scrollbar {
-  width: 16px;
+  width: 13px;
+  height: 13px;
 }
 * ::-webkit-scrollbar-corner {
   background: #dfdfdf;
@@ -53,7 +55,6 @@ body {
 }
 * ::-webkit-scrollbar-button:horizontal:end {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='16' height='17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 0H0v16h1V1h14V0z' fill='%23DFDFDF'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 1H1v14h1V2h12V1H2z' fill='%23fff'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 17H0v-1h15V0h1v17z' fill='%23000'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M15 1h-1v14H1v1h14V1z' fill='gray'/%3E%3Cpath fill='silver' d='M2 2h12v13H2z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M7 4H6v7h1v-1h1V9h1V8h1V7H9V6H8V5H7V4z' fill='%23000'/%3E%3C/svg%3E");
-  width: 16px;
 }
 #section1 header {
   margin: auto;
@@ -84,13 +85,18 @@ body {
   width: 80%;
   image-rendering: pixelated;
 }
+#section2 {
+  height: 100px;
+  margin: auto;
+  border: 2px solid white;
+}
 #section3 {
-  width: 22%;
-  float: left;
+  position: absolute;
+  width: 35%;
 }
 #section3 #the-marisa-flight {
-  height: 10em;
-  width: 15em;
+  height: 6em;
+  width: 13em;
   overflow-x: scroll;
   overflow-y: hidden;
 }
@@ -98,31 +104,43 @@ body {
   background-image: url("../assets/yn_mall_rooftop.png");
   background-repeat: repeat;
   height: 100%;
-  background-size: 448px 224.7px;
+  background-size: 320px 160.5px;
   background-position-y: 70%;
   width: 4000px;
 }
-#section2 {
-  width: 55%;
-  margin: auto;
-  margin-bottom: 2em;
+#section3 #seven-color-alice {
+  width: 50%;
 }
-#section2 #imgzone video {
+#section3 #seven-color-alice .alice {
+  width: 100%;
+}
+#imgzone {
+  width: 100%;
+  margin: auto;
+  margin-top: 5em;
+  margin-bottom: 1.5em;
+}
+#imgzone video {
+  width: 21%;
   display: block;
   margin: auto;
-  width: 35%;
 }
-#section2 #banner {
-  height: 96px;
+#banner {
+  height: 48px;
 }
-#section2 .ikuamp {
+#section4 {
+  width: 100%;
+  margin: auto;
+}
+#section4 .ikuamp {
   background-image: url("../assets/ikudamp_layout.png");
   background-size: contain;
   background-repeat: no-repeat;
-  image-rendering: pixelated;
+  image-rendering: auto;
   width: 694px;
   height: 308px;
   margin: auto;
+  transform: scale(1.1, 1.1);
   display: grid;
   align-items: center;
   grid-template-columns: repeat(6, 5.7375em);
@@ -131,10 +149,10 @@ body {
   padding-top: 51px;
   padding-left: 22px;
 }
-#section2 .ikuamp .slot-container {
+#section4 .ikuamp .slot-container {
   position: relative;
 }
-#section2 .ikuamp .track-slot {
+#section4 .ikuamp .track-slot {
   height: 121px;
   width: 110px;
   image-rendering: pixelated;
@@ -142,12 +160,12 @@ body {
   text-align: center;
   vertical-align: middle;
 }
-#section2 .ikuamp .track-slot video {
+#section4 .ikuamp .track-slot video {
   width: 100px;
   height: 100px;
   margin-top: 6px;
 }
-#section2 .ikuamp .track-slot img {
+#section4 .ikuamp .track-slot img {
   position: absolute;
   height: 121px;
   width: 110px;
@@ -155,7 +173,7 @@ body {
   left: 0px;
   opacity: 60%;
 }
-#section2 .ikuamp .track-name {
+#section4 .ikuamp .track-name {
   text-align: center;
   font-family: 'winamp';
   color: #00ff00;
@@ -165,25 +183,25 @@ body {
   bottom: 13px;
   text-rendering: auto;
 }
-#section2 .ikuamp .audio-player {
+#section4 .ikuamp .audio-player {
   display: flex;
   align-items: center;
 }
-#section2 .ikuamp .audio-player > div {
+#section4 .ikuamp .audio-player > div {
   position: relative;
   bottom: 30px;
   margin-right: 5px;
 }
-#section2 .ikuamp .audio-player .player-control {
+#section4 .ikuamp .audio-player .player-control {
   height: 15px;
 }
-#section2 .ikuamp .audio-player .player-control .seeking-bar {
+#section4 .ikuamp .audio-player .player-control .seeking-bar {
   appearance: none;
   width: 236px;
   height: 10px;
   background-image: url("../assets/player_bar.png");
 }
-#section2 .ikuamp .audio-player .seeking-bar::-moz-range-thumb {
+#section4 .ikuamp .audio-player .seeking-bar::-moz-range-thumb {
   border: none;
   appearance: none;
   width: 29px;
@@ -192,10 +210,10 @@ body {
   background-position: center center;
   cursor: pointer;
 }
-#section2 .ikuamp .audio-player .seeking-bar::-moz-range-thumb:active {
+#section4 .ikuamp .audio-player .seeking-bar::-moz-range-thumb:active {
   background-image: url('../assets/player_cursor_pushed.png');
 }
-#section2 .ikuamp .audio-player .seeking-bar::-webkit-slider-thumb {
+#section4 .ikuamp .audio-player .seeking-bar::-webkit-slider-thumb {
   appearance: none;
   width: 29px;
   height: 10px;
@@ -203,42 +221,42 @@ body {
   background-position: center center;
   cursor: pointer;
 }
-#section2 .ikuamp .audio-player .seeking-bar::-webkit-slider-thumb:active {
+#section4 .ikuamp .audio-player .seeking-bar::-webkit-slider-thumb:active {
   background-image: url('../assets/player_cursor_pushed.png');
 }
-#section2 .ikuamp .audio-player .actions {
+#section4 .ikuamp .audio-player .actions {
   display: flex;
 }
-#section2 .ikuamp .audio-player .actions * {
+#section4 .ikuamp .audio-player .actions * {
   height: 18px;
   width: 23px;
   position: relative;
   border: none;
 }
-#section2 .ikuamp .audio-player .actions .play {
+#section4 .ikuamp .audio-player .actions .play {
   background-image: url('../assets/play.png');
 }
-#section2 .ikuamp .audio-player .actions .play:active {
+#section4 .ikuamp .audio-player .actions .play:active {
   background-image: url('../assets/play_push.png');
 }
-#section2 .ikuamp .audio-player .actions .pause {
+#section4 .ikuamp .audio-player .actions .pause {
   background-image: url('../assets/pause.png');
 }
-#section2 .ikuamp .audio-player .actions .pause:active {
+#section4 .ikuamp .audio-player .actions .pause:active {
   background-image: url('../assets/pause_push.png');
 }
-#section2 .ikuamp .audio-player .actions .stop {
+#section4 .ikuamp .audio-player .actions .stop {
   background-image: url('../assets/stop.png');
 }
-#section2 .ikuamp .audio-player .actions .stop:active {
+#section4 .ikuamp .audio-player .actions .stop:active {
   background-image: url('../assets/stop_push.png');
 }
-#section2 .ikuamp .audio-player .timer-container {
+#section4 .ikuamp .audio-player .timer-container {
   background-image: url(../assets/timer_display.png);
   min-width: 50px;
   height: 20px;
 }
-#section2 .ikuamp .audio-player .timer-container .timer {
+#section4 .ikuamp .audio-player .timer-container .timer {
   position: relative;
   font-family: "digital7";
   font-size: 19px;
@@ -246,7 +264,7 @@ body {
   text-align: center;
   bottom: 2px;
 }
-#section2 .ikuamp .audio-player .timer-container .timer.pause {
+#section4 .ikuamp .audio-player .timer-container .timer.pause {
   animation: blink-animation 2s steps(2, start) infinite;
 }
 @keyframes blink-animation {
@@ -254,7 +272,7 @@ body {
     visibility: hidden;
   }
 }
-#section2 .ikuamp .audio-player .volume-bar {
+#section4 .ikuamp .audio-player .volume-bar {
   appearance: none;
   width: 68px;
   height: 13px;
@@ -262,7 +280,7 @@ body {
   top: 2px;
   position: relative;
 }
-#section2 .ikuamp .audio-player .volume-bar::-moz-range-thumb {
+#section4 .ikuamp .audio-player .volume-bar::-moz-range-thumb {
   appearance: none;
   border: none;
   width: 14px;
@@ -271,10 +289,10 @@ body {
   background-position: center center;
   cursor: pointer;
 }
-#section2 .ikuamp .audio-player .volume-bar::-moz-range-thumb:active {
+#section4 .ikuamp .audio-player .volume-bar::-moz-range-thumb:active {
   background-image: url('../assets/volume_cursor_pushed.png');
 }
-#section2 .ikuamp .audio-player .volume-bar::-webkit-slider-thumb {
+#section4 .ikuamp .audio-player .volume-bar::-webkit-slider-thumb {
   appearance: none;
   border: none;
   width: 14px;
@@ -283,10 +301,10 @@ body {
   background-position: center center;
   cursor: pointer;
 }
-#section2 .ikuamp .audio-player .volume-bar::-webkit-slider-thumb:active {
+#section4 .ikuamp .audio-player .volume-bar::-webkit-slider-thumb:active {
   background-image: url('../assets/volume_cursor_pushed.png');
 }
-#section2 .ikuamp .audio-player .title-display {
+#section4 .ikuamp .audio-player .title-display {
   background-image: url(../assets/title_display.png);
   min-width: 159px;
   height: 14px;
@@ -294,27 +312,33 @@ body {
   overflow: hidden;
   text-overflow: clip;
 }
-#section2 .ikuamp .audio-player .title-display .song-name {
+#section4 .ikuamp .audio-player .title-display .song-name {
   position: relative;
-  bottom: 2px;
   font-family: "winamp";
   font-size: 14px;
   color: #00ff00;
-  animation: scrollText 6s linear infinite;
+}
+#section4 .ikuamp .audio-player .title-display .song-name.base {
+  animation: scrollText 7s linear infinite;
+  bottom: 2px;
 }
 @keyframes scrollText {
   from {
     transform: translateX(100%);
   }
   to {
-    transform: translateX(-100%);
+    transform: translateX(-150%);
   }
 }
-#section2 .ikuamp .audio-player .title-display .song-name.set-volume {
+#section4 .ikuamp .audio-player .title-display .song-name.set-volume {
   animation: none;
   text-align: center;
 }
-#section2 .ikuamp .audio-player .repeat .repeat-btn {
+#section4 .ikuamp .audio-player .title-display .song-name.loading {
+  animation: none;
+  text-align: center;
+}
+#section4 .ikuamp .audio-player .repeat .repeat-btn {
   background-image: url('../assets/repeat.png');
   width: 28px;
   height: 15px;
@@ -322,13 +346,13 @@ body {
   display: block;
   border: none;
 }
-#section2 .ikuamp .audio-player .repeat .repeat-btn.selected {
+#section4 .ikuamp .audio-player .repeat .repeat-btn.selected {
   background-image: url('../assets/repeat_selected.png');
 }
-#section2 .ikuamp .audio-player .repeat .repeat-btn:active {
+#section4 .ikuamp .audio-player .repeat .repeat-btn:active {
   background-image: url('../assets/repeat_push.png');
 }
-#section2 .ikuamp .audio-player .logo .logo-btn {
+#section4 .ikuamp .audio-player .logo .logo-btn {
   width: 40px;
   position: relative;
   display: block;
@@ -336,7 +360,7 @@ body {
   top: -8px;
   image-rendering: auto;
 }
-#section2 .ikuamp .audio-player .logo .logo-btn:hover {
+#section4 .ikuamp .audio-player .logo .logo-btn:hover {
   width: 47px;
   left: -2px;
 }
