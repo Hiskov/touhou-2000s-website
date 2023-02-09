@@ -2,6 +2,7 @@
 
 var _gapless = require("./gapless5.js");
 
+var enter_screen = document.getElementById("enter-screen");
 var player = new _gapless.Gapless5({
   loop: true
 });
@@ -31,6 +32,7 @@ var is_reapeating;
 var play_flag;
 var all_loaded;
 var is_seeking;
+var in_enter_screen;
 /* INIT */
 
 function init() {
@@ -49,9 +51,20 @@ function init() {
 
   pause();
   seekAudio(0);
+  in_enter_screen = true;
 }
 
 init();
+/*
+    "Enter" Screen
+*/
+
+var enter_btn = document.querySelector("#enter-screen .enter-btn");
+enter_btn.addEventListener("click", function () {
+  enter_screen.classList.add("disable");
+  in_enter_screen = false;
+  play();
+});
 /*
     Video Controls
 */
@@ -309,18 +322,18 @@ volume_bar.addEventListener("input", function () {
 // Handlers
 
 function keyup_handler(e) {
-  if (e.key === ' ') {
-    pauseAction();
-  }
-
-  if (e.key === ' ' && e.target == document.body) {
-    e.preventDefault();
+  if (!in_enter_screen) {
+    if (e.key === ' ') {
+      pauseAction();
+    }
   }
 }
 
 function keydown_handler(e) {
-  if (e.key === ' ' && e.target == document.body) {
-    e.preventDefault();
+  if (!in_enter_screen) {
+    if (e.key === ' ' && e.target == document.body) {
+      e.preventDefault();
+    }
   }
 }
 

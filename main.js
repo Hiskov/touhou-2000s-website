@@ -1,5 +1,7 @@
 import {Gapless5} from "./gapless5.js"
 
+var enter_screen = document.getElementById("enter-screen");
+
 var player = new Gapless5({loop:true});
 var song_file_name = "touhou_2000s_fanpage_ytpmv_audio.mp3";
 
@@ -22,7 +24,6 @@ var title_song = document.querySelector(".audio-player .song-name");
 
 var seeking_bar = document.querySelector(".audio-player .seeking-bar");
 
-
 var play_btn = document.querySelector(".audio-player .play");
 var pause_btn = document.querySelector(".audio-player .pause");
 var stop_btn = document.querySelector(".audio-player .stop");
@@ -36,6 +37,8 @@ var is_reapeating;
 var play_flag;
 var all_loaded;
 var is_seeking;
+var in_enter_screen;
+
 
 
 
@@ -59,9 +62,22 @@ function init(){
 
     pause();
     seekAudio(0);
+
+    in_enter_screen = true;
 }
 
 init();
+
+
+/*
+    "Enter" Screen
+*/
+var enter_btn = document.querySelector("#enter-screen .enter-btn");
+enter_btn.addEventListener("click", function(){
+    enter_screen.classList.add("disable");
+    in_enter_screen = false;
+    play();
+});
 
 
 
@@ -319,16 +335,17 @@ volume_bar.addEventListener("input", function(){
 
 // Handlers
 function keyup_handler(e) {
-    if(e.key === ' ') {
-        pauseAction();
-    }
-    if(e.key === ' ' && e.target == document.body) {
-        e.preventDefault();
+    if(!in_enter_screen){
+        if(e.key === ' ') {
+            pauseAction();
+        }
     }
 }
 function keydown_handler(e) {
-    if(e.key === ' ' && e.target == document.body) {
-        e.preventDefault();
+    if(!in_enter_screen){
+        if(e.key === ' ' && e.target == document.body) {
+            e.preventDefault();
+        }
     }
 }
 
