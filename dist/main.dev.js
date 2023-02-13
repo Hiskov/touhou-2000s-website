@@ -51,7 +51,7 @@ function init() {
 
   pause();
   seekAudio(0);
-  in_enter_screen = true;
+  in_enter_screen = false;
 }
 
 init();
@@ -59,11 +59,25 @@ init();
     "Enter" Screen
 */
 
+/*
 var enter_btn = document.querySelector("#enter-screen .enter-btn");
-enter_btn.addEventListener("click", function () {
-  enter_screen.classList.add("disable");
-  in_enter_screen = false;
-  play();
+enter_btn.addEventListener("click", function(){
+    enter_screen.classList.add("disable");
+    in_enter_screen = false;
+    play();
+});
+*/
+
+/*
+    7 Colored Puppeteer
+*/
+
+var color_nb = document.querySelector("#seven-color-alice .color-nb");
+var color_slider = document.querySelector("#seven-color-alice .color-slider");
+var alice = document.querySelector("#seven-color-alice .alice");
+color_slider.addEventListener("input", function () {
+  color_nb.innerHTML = color_slider.value;
+  alice.src = "assets/alice/alice".concat(color_slider.value, ".png");
 });
 /*
     Video Controls
