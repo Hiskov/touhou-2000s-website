@@ -148,7 +148,7 @@ body {
 }
 #section3 #seven-color-alice .alice {
   width: 100%;
-  image-rendering: auto;
+  image-rendering: pixelated;
 }
 #section3 #seven-color-alice .field-row {
   display: flex;
@@ -203,6 +203,26 @@ body {
   box-sizing: border-box;
   height: 2px;
   width: 100%;
+}
+#section3 #approved {
+  border: 1px solid white;
+  width: 26em;
+  height: 5em;
+  font-size: 0.75em;
+  background-color: #000;
+}
+#section3 #approved img {
+  border-right: 1px solid white;
+  height: 100%;
+  float: left;
+}
+#section3 #approved .label {
+  text-align: center;
+  height: 5em;
+  width: 26em;
+  display: table-cell;
+  vertical-align: middle;
+  font-family: "Helvetica";
 }
 #imgzone {
   width: 100%;
