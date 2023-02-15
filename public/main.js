@@ -363,8 +363,12 @@ function keydown_handler(e) {
         if(e.key === ' ' && e.target == document.body) {
             e.preventDefault();
         }
+        if(e.key === 'F1'){
+            e.preventDefault();
+            window.location.href = "http://127.0.0.1:3000/help"
+        }
     }
 }
 
 document.addEventListener('keyup', keyup_handler, false);
-//document.addEventListener('keydown', keydown_handler, false);
+document.addEventListener('keydown', keydown_handler, false);
