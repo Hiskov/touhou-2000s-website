@@ -113,6 +113,7 @@ function realplay(){ // carrément
 }
 function pause(){
     if(!play_flag){
+        play_flag = false;
         player.pause();
         pauseTracks();
         timer.classList.add("pause");
@@ -130,7 +131,6 @@ function stop(){
     Tracks
 */
 function oncanplaythroughRoutine(){
-    console.log("canplaythrough");
     if(play_flag){
         realplay();
         play_flag = false;
@@ -280,6 +280,7 @@ player.ontimeupdate = () => {
 // PLAY
 play_btn.addEventListener("click", function(){
     play();
+    this.blur();
 });
 
 // PAUSE
@@ -293,11 +294,13 @@ function pauseAction(){
 }
 pause_btn.addEventListener("click", function(){
     pauseAction();
+    this.blur();
 });
 
 // STOP
 stop_btn.addEventListener("click", function(){
     stop();
+    this.blur();
 });
 
 
@@ -364,4 +367,4 @@ function keydown_handler(e) {
 }
 
 document.addEventListener('keyup', keyup_handler, false);
-document.addEventListener('keydown', keydown_handler, false);
+//document.addEventListener('keydown', keydown_handler, false);
