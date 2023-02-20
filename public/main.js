@@ -94,6 +94,16 @@ color_slider.addEventListener("input", function(){
 });
 
 
+/*
+    Rumia Light
+*/
+var rumia = document.querySelector("#rumia-light .rumia");
+var light_slider = document.querySelector("#rumia-light .light-slider");
+light_slider.addEventListener("input", function(){
+    rumia.style.opacity = `${light_slider.value}%`;
+});
+
+
 
 /*
     Video Controls
@@ -365,7 +375,8 @@ function keydown_handler(e) {
         }
         if(e.key === 'F1'){
             e.preventDefault();
-            window.location.href = "http://127.0.0.1:3000/help"
+            //window.location.href = "http://127.0.0.1:3000/help"
+            window.open("http://127.0.0.1:3000/help", "_blank");
         }
     }
 }
