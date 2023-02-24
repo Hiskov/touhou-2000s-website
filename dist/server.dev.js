@@ -11,3 +11,6 @@ app.use("/", router);
 app.listen(port, function () {
   console.log("Example app listening on port ".concat(port));
 });
+app.get('*', function (req, res) {
+  res.status(404).send('what???');
+});
