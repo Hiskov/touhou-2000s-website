@@ -3,7 +3,7 @@ import {Gapless5} from "./gapless5.js"
 var enter_screen = document.getElementById("enter-screen");
 
 var player = new Gapless5({loop:true});
-var song_file_name = "touhou_2000s_fanpage_ytpmv_audio.mp3";
+var song_file_name = "touhou_2000s_fanpage_ytpmv_audio.wav";
 
 var imgzone = document.getElementById("imgzone_vid");
 var synth = document.getElementById("synth");

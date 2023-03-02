@@ -99,8 +99,8 @@ body{
             img{
                 display: block;
                 margin: auto;
-                width: 80%;
-                image-rendering: pixelated;
+                width: 40%;
+                image-rendering: auto;
             }
         }
     }
@@ -222,6 +222,40 @@ body{
     }
 }
 
+
+#transfer{
+    width: 200px;
+    height: 100px;
+    border: 3px solid hsl(25, 43%, 20%);
+    background-image: url("../assets/shrine bg.png");
+    background-size: 102%;
+    background-repeat: no-repeat;
+    background-position: 0px -10px;
+
+    .text{
+        position: relative;
+        left: 2px;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        letter-spacing: .25rem;
+        padding: 10px 0 10px 0;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .box-part{
+        display: inline-block;
+        text-align: center;
+        .donation-box{
+            width: 40%;
+        }
+        .hand{
+            position: relative;
+            top: 15px;
+            width: 30%;
+        }
+    }
+}
 
 
 #rumia-light {
