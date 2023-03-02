@@ -6,7 +6,7 @@ var enter_screen = document.getElementById("enter-screen");
 var player = new _gapless.Gapless5({
   loop: true
 });
-var song_file_name = "touhou_2000s_fanpage_ytpmv_audio.mp3";
+var song_file_name = "touhou_2000s_fanpage_ytpmv_audio.wav";
 var imgzone = document.getElementById("imgzone_vid");
 var synth = document.getElementById("synth");
 var synth_echo = document.getElementById("synth-echo");
@@ -78,6 +78,15 @@ var alice = document.querySelector("#seven-color-alice .alice");
 color_slider.addEventListener("input", function () {
   color_nb.innerHTML = color_slider.value;
   alice.src = "assets/alice/alice".concat(color_slider.value, ".png");
+});
+/*
+    Rumia Light
+*/
+
+var rumia = document.querySelector("#rumia-light .rumia");
+var light_slider = document.querySelector("#rumia-light .light-slider");
+light_slider.addEventListener("input", function () {
+  rumia.style.opacity = "".concat(light_slider.value, "%");
 });
 /*
     Video Controls
@@ -333,6 +342,15 @@ volume_bar.addEventListener("input", function () {
   seekVolume();
 });
 /*
+    Yagokoro Help Center
+*/
+
+var yagokoro_help_close_btn_ = document.querySelector(".yagokoro-help button");
+yagokoro_help_close_btn_.addEventListener("click", function () {
+  var popup = document.querySelector(".yagokoro-help");
+  popup.classList.add("closed");
+});
+/*
     HOTKEYS
 */
 // Handlers
@@ -352,8 +370,9 @@ function keydown_handler(e) {
     }
 
     if (e.key === 'F1') {
-      e.preventDefault();
-      window.location.href = "http://127.0.0.1:3000/help";
+      e.preventDefault(); //window.location.href = "http://127.0.0.1:3000/help"
+
+      window.open("http://127.0.0.1:3000/help", "_blank");
     }
   }
 }

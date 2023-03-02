@@ -357,6 +357,17 @@ volume_bar.addEventListener("input", function(){
 
 
 /*
+    Yagokoro Help Center
+*/
+var yagokoro_help_close_btn_ = document.querySelector(".yagokoro-help button");
+yagokoro_help_close_btn_.addEventListener("click", function(){
+  var popup = document.querySelector(".yagokoro-help");
+  popup.classList.add("closed");
+});
+
+
+
+/*
     HOTKEYS
 */
 

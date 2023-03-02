@@ -10,6 +10,10 @@
   font-family: 'Pixelated MS Sans Serif';
   src: url('../fonts/ms_sans_serif.woff') format('woff');
 }
+@font-face {
+  font-family: 'Pixelated MS Sans Serif Bold';
+  src: url('../fonts/ms_sans_serif_bold.woff') format('woff');
+}
 html {
   background-color: black;
 }
@@ -81,6 +85,61 @@ body {
   margin: auto;
   width: 40%;
   image-rendering: auto;
+}
+.yagokoro-help {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Pixelated MS Sans Serif";
+  letter-spacing: 0.05rem;
+  background: #c2c6ca;
+  font-size: 12px;
+  -webkit-font-smoothing: none;
+  width: 265px;
+  height: 81.15625px;
+  box-shadow: 0.5px 0.5px 0 0.5px black, inset 1px 1px #C2C6CA, inset -1px -1px #85898d, inset 2px 2px white;
+}
+.yagokoro-help.closed {
+  visibility: hidden;
+}
+.yagokoro-help button {
+  background: #c2c6ca;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  outline: none;
+}
+.yagokoro-help .shadow {
+  box-shadow: 0.5px 0.5px 0 0.5px black, inset 1px 1px white, inset -1px -1px #85898d;
+}
+.yagokoro-help .bar {
+  font-weight: bold;
+  width: calc(100% - 11px);
+  height: 13px;
+  color: white;
+  background: linear-gradient(90deg, navy, #1084d0);
+  padding: 2px 3px 3px;
+  margin: 3px 2px 1px 3px;
+}
+.yagokoro-help .bar p {
+  margin: 0;
+  margin-left: 2px;
+}
+.yagokoro-help .bar button {
+  display: inline-block;
+  text-align: right;
+  width: 15px;
+  height: 13px;
+}
+.yagokoro-help .bar button:active {
+  box-shadow: 0.5px 0.5px 0 0.5px white, inset 1px 1px black, inset -1px -1px #c2c6ca, inset 2px 2px #85898d;
+}
+.yagokoro-help .bar button:active svg {
+  transform: translateX(1px) translateY(1px);
+}
+.yagokoro-help .bar button svg {
+  margin: 3px 3px 3px 4px;
 }
 #section2 {
   height: 100px;
