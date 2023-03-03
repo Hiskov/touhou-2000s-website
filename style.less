@@ -20,6 +20,11 @@
     src: url('../fonts/ms_sans_serif_bold.woff') format('woff');
 }
 
+@font-face {
+    font-family: 'eosd';
+    src: url('../fonts/DFPPOPCorn-W12.ttf') format('truetype');
+}
+
 
 
 html{
@@ -86,27 +91,15 @@ body{
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 80%;
-        }
-        
-        .yinyang{
-            width: 20%;
-        }
-        
-        .welcome{
-            display: block;
-            width: 75%;
-            height: auto;
-        }
-        
-        .wings{
-            margin-top: -2em;
-            margin-bottom: -1em;
-            img{
+            width: 80%;               
+            .yinyang{
+                width: 20%;
+            }
+            
+            .welcome{
                 display: block;
-                margin: auto;
-                width: 40%;
-                image-rendering: auto;
+                width: 70%;
+                height: auto;
             }
         }
     }
@@ -114,7 +107,64 @@ body{
 }
 
 
-.yagokoro-help{
+#navigation{
+    display: flex;
+    margin-top: -20px;
+    width: 100%;
+    .wing{
+        width: 22%;
+        img{
+            position: relative;
+            display: block;
+            margin: auto;
+            width: 100%;
+            image-rendering: auto;
+            margin-left: -200px;
+            z-index: 0;
+            bottom: 7px;
+        }
+    }
+    .navigation-bar{
+        margin: auto;
+        width: 68%;
+        height: 70px;
+        position: relative;
+        z-index: 1;
+        background-image: url(../assets/nav_bg.png);
+        background-size: 100% 100%;
+        //margin-top: -20px;
+        ul{
+            display: flex;
+            justify-content: center;
+            position: relative;
+            top: 19px;
+            right: 20px;
+            margin: 0 0 0 0;
+
+            li{
+                font-family: "eosd";
+                //font-style: italic;
+                color: #FFD2D2;
+                font-size: 30px;
+                @margin-lr: 30px;
+                margin: 0 @margin-lr 0 @margin-lr;
+                display: inline;
+                a{
+                    color: #FFD2D2;
+                    text-decoration: none;
+                }
+            }
+            a:hover{
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+
+#yagokoro-help{
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;

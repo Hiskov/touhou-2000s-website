@@ -1,5 +1,7 @@
 import {Gapless5} from "./gapless5.js"
 
+var DOMAIN_URL = "http://127.0.0.1:3000"
+
 var enter_screen = document.getElementById("enter-screen");
 
 var player = new Gapless5({loop:true});
@@ -359,9 +361,9 @@ volume_bar.addEventListener("input", function(){
 /*
     Yagokoro Help Center
 */
-var yagokoro_help_close_btn_ = document.querySelector(".yagokoro-help button");
+var yagokoro_help_close_btn_ = document.querySelector("#yagokoro-help button");
 yagokoro_help_close_btn_.addEventListener("click", function(){
-  var popup = document.querySelector(".yagokoro-help");
+  var popup = document.querySelector("#yagokoro-help");
   popup.classList.add("closed");
 });
 
@@ -387,7 +389,7 @@ function keydown_handler(e) {
         if(e.key === 'F1'){
             e.preventDefault();
             //window.location.href = "http://127.0.0.1:3000/help"
-            window.open("http://127.0.0.1:3000/help", "_blank");
+            window.open(`${DOMAIN_URL}/help`, "_blank");
         }
     }
 }

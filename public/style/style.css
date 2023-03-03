@@ -14,6 +14,10 @@
   font-family: 'Pixelated MS Sans Serif Bold';
   src: url('../fonts/ms_sans_serif_bold.woff') format('woff');
 }
+@font-face {
+  font-family: 'eosd';
+  src: url('../fonts/DFPPOPCorn-W12.ttf') format('truetype');
+}
 html {
   background-color: black;
 }
@@ -68,25 +72,65 @@ body {
   align-items: center;
   width: 80%;
 }
-#section1 header .yinyang {
+#section1 header .title .yinyang {
   width: 20%;
 }
-#section1 header .welcome {
+#section1 header .title .welcome {
   display: block;
-  width: 75%;
+  width: 70%;
   height: auto;
 }
-#section1 header .wings {
-  margin-top: -2em;
-  margin-bottom: -1em;
+#navigation {
+  display: flex;
+  margin-top: -20px;
+  width: 100%;
 }
-#section1 header .wings img {
+#navigation .wing {
+  width: 22%;
+}
+#navigation .wing img {
+  position: relative;
   display: block;
   margin: auto;
-  width: 40%;
+  width: 100%;
   image-rendering: auto;
+  margin-left: -200px;
+  z-index: 0;
+  bottom: 7px;
 }
-.yagokoro-help {
+#navigation .navigation-bar {
+  margin: auto;
+  width: 68%;
+  height: 70px;
+  position: relative;
+  z-index: 1;
+  background-image: url(../assets/nav_bg.png);
+  background-size: 100% 100%;
+}
+#navigation .navigation-bar ul {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 19px;
+  right: 20px;
+  margin: 0 0 0 0;
+}
+#navigation .navigation-bar ul li {
+  font-family: "eosd";
+  color: #FFD2D2;
+  font-size: 30px;
+  margin: 0 30px 0 30px;
+  display: inline;
+}
+#navigation .navigation-bar ul li a {
+  color: #FFD2D2;
+  text-decoration: none;
+}
+#navigation .navigation-bar ul a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#yagokoro-help {
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
@@ -100,20 +144,20 @@ body {
   height: 81.15625px;
   box-shadow: 0.5px 0.5px 0 0.5px black, inset 1px 1px #C2C6CA, inset -1px -1px #85898d, inset 2px 2px white;
 }
-.yagokoro-help.closed {
+#yagokoro-help.closed {
   visibility: hidden;
 }
-.yagokoro-help button {
+#yagokoro-help button {
   background: #c2c6ca;
   border: none;
   padding: 0;
   border-radius: 0;
   outline: none;
 }
-.yagokoro-help .shadow {
+#yagokoro-help .shadow {
   box-shadow: 0.5px 0.5px 0 0.5px black, inset 1px 1px white, inset -1px -1px #85898d;
 }
-.yagokoro-help .bar {
+#yagokoro-help .bar {
   font-weight: bold;
   width: calc(100% - 11px);
   height: 13px;
@@ -122,23 +166,23 @@ body {
   padding: 2px 3px 3px;
   margin: 3px 2px 1px 3px;
 }
-.yagokoro-help .bar p {
+#yagokoro-help .bar p {
   margin: 0;
   margin-left: 2px;
 }
-.yagokoro-help .bar button {
+#yagokoro-help .bar button {
   display: inline-block;
   text-align: right;
   width: 15px;
   height: 13px;
 }
-.yagokoro-help .bar button:active {
+#yagokoro-help .bar button:active {
   box-shadow: 0.5px 0.5px 0 0.5px white, inset 1px 1px black, inset -1px -1px #c2c6ca, inset 2px 2px #85898d;
 }
-.yagokoro-help .bar button:active svg {
+#yagokoro-help .bar button:active svg {
   transform: translateX(1px) translateY(1px);
 }
-.yagokoro-help .bar button svg {
+#yagokoro-help .bar button svg {
   margin: 3px 3px 3px 4px;
 }
 #section2 {
