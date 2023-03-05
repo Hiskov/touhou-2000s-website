@@ -5,7 +5,7 @@ var DOMAIN_URL = "http://127.0.0.1:3000"
 var enter_screen = document.getElementById("enter-screen");
 
 var player = new Gapless5({loop:true});
-var song_file_name = "touhou_2000s_fanpage_ytpmv_audio.wav";
+var song_file_name = "touhou-2000s-fanpage-ytpmv-audio.wav";
 
 var imgzone = document.getElementById("imgzone_vid");
 var synth = document.getElementById("synth");
@@ -68,6 +68,16 @@ function init(){
     in_enter_screen = false;
 }
 
+function restart_gif(){
+    var imgs = document.querySelectorAll("img");
+    imgs.forEach(function(img) {
+        let src = img.src;
+        img.src = "";
+        img.src = src;
+    })
+}
+
+
 init();
 
 
@@ -79,6 +89,7 @@ var enter_btn = document.querySelector("#enter-screen .enter-btn");
 enter_btn.addEventListener("click", function(){
     enter_screen.classList.add("disable");
     in_enter_screen = false;
+    restart_gif();
     play();
 });
 */
@@ -87,6 +98,7 @@ enter_btn.addEventListener("click", function(){
 /*
     7 Colored Puppeteer
 */
+
 var color_nb = document.querySelector("#seven-color-alice .color-nb");
 var color_slider = document.querySelector("#seven-color-alice .color-slider");
 var alice = document.querySelector("#seven-color-alice .alice");
@@ -99,11 +111,13 @@ color_slider.addEventListener("input", function(){
 /*
     Rumia Light
 */
+
 var rumia = document.querySelector("#rumia-light .rumia");
 var light_slider = document.querySelector("#rumia-light .light-slider");
 light_slider.addEventListener("input", function(){
     rumia.style.opacity = `${light_slider.value}%`;
 });
+
 
 
 
