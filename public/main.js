@@ -41,8 +41,7 @@ var play_flag;
 var realplay_flag;
 var is_seeking;
 var in_enter_screen;
-
-
+var loading_enter_screen;
 
 
 /* INIT */
@@ -69,7 +68,8 @@ function init(){
     pause();
     seekAudio(0);
 
-    in_enter_screen = false;
+    in_enter_screen = true;
+    loading_enter_screen = true;
 }
 
 function restart_gif(){
@@ -93,35 +93,49 @@ function arraysEqual(a, b) {
 
 
 function addTrackListener(){
-    var loaded = new Array(videos.length).fill(0);
+    var len = videos.length+1;
+    var loaded = new Array(len).fill(0);
     videos.forEach(function(v, i){
         v.addEventListener('canplay', function(){
             loaded[i] = 1;
-            console.log(loaded);
-            if (arraysEqual(loaded, new Array(videos.length).fill(1))){
-                console.log("ééééé");
+            //console.log(loaded);
+            if (arraysEqual(loaded, new Array(len).fill(1))){
                 oncanplaythroughRoutine();
-                loaded = new Array(videos.length).fill(0);
+                loaded = new Array(len).fill(0);
             }
         });
     });
+    player.onload(function(){
+        console.log("Audio Load");
+        loaded[len-1] = 1;
+        if (arraysEqual(loaded, new Array(len).fill(1))){
+            oncanplaythroughRoutine();
+            loaded = new Array(len).fill(0);
+        }
+    })
 }
 
 init();
 
 
+
 /*
     "Enter" Screen
 */
-/*
 var enter_btn = document.querySelector("#enter-screen .enter-btn");
-enter_btn.addEventListener("click", function(){
-    enter_screen.classList.add("disable");
-    in_enter_screen = false;
-    restart_gif();
-    play();
+
+Promise.all(Array.from(document.images).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))).then(() => {
+    console.log('images finished loading');
+    loading_enter_screen = false;
+    enter_btn.innerHTML = "ENTER";
+    enter_btn.classList.add("ckickable");
+    enter_btn.addEventListener("click", function(){
+        enter_screen.classList.add("disable");
+        in_enter_screen = false;
+        restart_gif();
+        play();
+    });
 });
-*/
 
 
 /*

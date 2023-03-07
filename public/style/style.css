@@ -53,7 +53,7 @@ body {
   font-size: 1.5em;
   font-weight: bold;
 }
-#enter-screen .enter-btn:hover {
+#enter-screen .enter-btn:hover.ckickable {
   font-size: 1.7em;
   text-decoration: underline;
   cursor: pointer;
@@ -460,17 +460,20 @@ header .title .welcome {
   width: 99%;
   margin: auto;
   position: relative;
-  top: 26px;
+  top: 4px;
   scrollbar-color: #dfdfdf grey;
 }
 #the-marisa-flight .text {
-  position: absolute;
+  position: relative;
+  bottom: 2px;
+  display: block;
   z-index: 1;
   color: yellow;
   text-decoration: underline;
-  font-size: 18px;
-  margin-top: -23px;
-  margin-left: 22px;
+  width: 100%;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  text-align: center;
 }
 #the-marisa-flight .marisa {
   image-rendering: auto;

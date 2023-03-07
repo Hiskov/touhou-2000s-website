@@ -2,12 +2,13 @@
 
 var _gapless = require("./gapless5.js");
 
+var DOMAIN_URL = "http://127.0.0.1:80";
 var enter_screen = document.getElementById("enter-screen");
 var player = new _gapless.Gapless5({
   loop: true
 });
-var song_file_name = "touhou_2000s_fanpage_ytpmv_audio.wav";
-var imgzone = document.getElementById("imgzone_vid");
+var song_file_name = "touhou-2000s-fanpage-ytpmv-audio.wav";
+var imgzone = document.getElementById("imgzone-vid");
 var synth = document.getElementById("synth");
 var synth_echo = document.getElementById("synth-echo");
 var bass = document.getElementById("bass");
@@ -19,6 +20,7 @@ var strings1 = document.getElementById("strings1");
 var strings2 = document.getElementById("strings2");
 var strings3 = document.getElementById("strings3");
 var cirno = document.getElementById("cirno");
+var videos = [imgzone, synth, synth_echo, bass, snare, snare2, kick, hi_hat, strings1, strings2, strings3, cirno];
 var timer = document.querySelector(".audio-player .timer");
 var title_song = document.querySelector(".audio-player .song-name");
 var seeking_bar = document.querySelector(".audio-player .seeking-bar");
@@ -30,15 +32,18 @@ var volume_bar = document.querySelector(".audio-player .volume-bar");
 var audio_length;
 var is_reapeating;
 var play_flag;
-var all_loaded;
+var realplay_flag;
 var is_seeking;
 var in_enter_screen;
+var loading_enter_screen;
 /* INIT */
 
 function init() {
+  loadTracks();
+  addTrackListener();
   is_reapeating = true;
   play_flag = false;
-  all_loaded = true;
+  realplay_flag = true;
   volume_bar.value = 25;
   seekVolume();
   player.addTrack("assets/".concat(song_file_name)); //var audio_length = document.getElementById("audio_source").duration*1000;
@@ -51,7 +56,53 @@ function init() {
 
   pause();
   seekAudio(0);
-  in_enter_screen = false;
+  in_enter_screen = true;
+  loading_enter_screen = true;
+}
+
+function restart_gif() {
+  var imgs = document.querySelectorAll("img");
+  imgs.forEach(function (img) {
+    var src = img.src;
+    img.src = "";
+    img.src = src;
+  });
+}
+
+function arraysEqual(a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length !== b.length) return false;
+
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+
+  return true;
+}
+
+function addTrackListener() {
+  var len = videos.length + 1;
+  var loaded = new Array(len).fill(0);
+  videos.forEach(function (v, i) {
+    v.addEventListener('canplay', function () {
+      loaded[i] = 1; //console.log(loaded);
+
+      if (arraysEqual(loaded, new Array(len).fill(1))) {
+        oncanplaythroughRoutine();
+        loaded = new Array(len).fill(0);
+      }
+    });
+  });
+  player.onload(function () {
+    console.log("Audio Load");
+    loaded[len - 1] = 1;
+
+    if (arraysEqual(loaded, new Array(len).fill(1))) {
+      oncanplaythroughRoutine();
+      loaded = new Array(len).fill(0);
+    }
+  });
 }
 
 init();
@@ -59,15 +110,25 @@ init();
     "Enter" Screen
 */
 
-/*
 var enter_btn = document.querySelector("#enter-screen .enter-btn");
-enter_btn.addEventListener("click", function(){
+Promise.all(Array.from(document.images).filter(function (img) {
+  return !img.complete;
+}).map(function (img) {
+  return new Promise(function (resolve) {
+    img.onload = img.onerror = resolve;
+  });
+})).then(function () {
+  console.log('images finished loading');
+  loading_enter_screen = false;
+  enter_btn.innerHTML = "ENTER";
+  enter_btn.classList.add("ckickable");
+  enter_btn.addEventListener("click", function () {
     enter_screen.classList.add("disable");
     in_enter_screen = false;
+    restart_gif();
     play();
+  });
 });
-*/
-
 /*
     7 Colored Puppeteer
 */
@@ -94,16 +155,23 @@ light_slider.addEventListener("input", function () {
 
 function play() {
   if (!player.isPlaying() && !play_flag) {
-    play_flag = true;
-    seekAudio(seeking_bar.value);
-    displayLoading();
+    if (!realplay_flag) {
+      play_flag = true;
+      seekAudio(seeking_bar.value);
+      displayLoading();
+    } else {
+      console.log("lol");
+      realplay();
+      realplay_flag = false;
+    }
   }
 }
 
 function realplay() {
   // carrément
-  player.play();
+  //setTimeTracks(player.currentPosition*1000);
   playsTracks();
+  player.play();
   displaySongName();
   timer.classList.remove("pause");
 }
@@ -128,14 +196,31 @@ function stop() {
 
 
 function oncanplaythroughRoutine() {
+  console.log("MUKYUUUUUU");
+  realplay_flag = true;
+
   if (play_flag) {
     realplay();
     play_flag = false;
-    all_loaded = true;
+    realplay_flag = false;
   }
 }
 
-snare2.oncanplaythrough = oncanplaythroughRoutine;
+function loadTracks() {
+  /*imgzone.preload();
+  synth.preload();
+  synth_echo.preload();
+  bass.preload();
+  snare.preload();
+  kick.preload();
+  snare2.preload();
+  hi_hat.preload();
+  telephone.preload();
+  strings1.preload();
+  strings2.preload();
+  strings3.preload();
+  cirno.preload();*/
+}
 
 function setTimeTracks(time) {
   imgzone.currentTime = time;
@@ -240,11 +325,11 @@ function displayLoading() {
 
 
 function seekAudio(seek_value) {
-  all_loaded = false;
+  realplay_flag = false;
   is_seeking = true;
-  player.setPosition(seek_value);
   setTimeTracks(seek_value / 1000.0);
   setTimer(seek_value / 1000);
+  player.setPosition(seek_value);
   is_seeking = false;
 }
 
@@ -255,8 +340,7 @@ seeking_bar.addEventListener("change", function () {
     if (seeking_bar.value != 0) {
       play();
     } else {
-      play();
-      oncanplaythroughRoutine();
+      play(); //oncanplaythroughRoutine();
     }
   }
 });
@@ -345,9 +429,9 @@ volume_bar.addEventListener("input", function () {
     Yagokoro Help Center
 */
 
-var yagokoro_help_close_btn_ = document.querySelector(".yagokoro-help button");
+var yagokoro_help_close_btn_ = document.querySelector("#yagokoro-help button");
 yagokoro_help_close_btn_.addEventListener("click", function () {
-  var popup = document.querySelector(".yagokoro-help");
+  var popup = document.querySelector("#yagokoro-help");
   popup.classList.add("closed");
 });
 /*
@@ -372,7 +456,7 @@ function keydown_handler(e) {
     if (e.key === 'F1') {
       e.preventDefault(); //window.location.href = "http://127.0.0.1:3000/help"
 
-      window.open("http://127.0.0.1:3000/help", "_blank");
+      window.open("".concat(DOMAIN_URL, "/help"), "_blank");
     }
   }
 }

@@ -66,9 +66,11 @@ body{
         font-weight: bold;
     }
     .enter-btn:hover{
-        font-size: 1.7em;
-        text-decoration: underline;
-        cursor: pointer;
+        &.ckickable{
+            font-size: 1.7em;
+            text-decoration: underline;
+            cursor: pointer;
+        }
     }
     &.disable{
         visibility: hidden;
@@ -447,16 +449,19 @@ header{
     width: 99%;
     margin: auto;
     position: relative;
-    top: 26px;
+    top: 4px;
     scrollbar-color: #dfdfdf grey;
     .text{
-        position: absolute;
+        position: relative;
+        bottom: 2px;
+        display: block;
         z-index: 1;
         color: yellow;
         text-decoration: underline;
-        font-size: 18px;
-        margin-top: -23px;
-        margin-left: 22px;
+        width: 100%;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 20px;
+        text-align: center;
     }
 
     .marisa{
