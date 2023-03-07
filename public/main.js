@@ -1,13 +1,13 @@
 import {Gapless5} from "./gapless5.js"
 
-var DOMAIN_URL = "http://127.0.0.1:3000"
+var DOMAIN_URL = "http://127.0.0.1:80"
 
 var enter_screen = document.getElementById("enter-screen");
 
 var player = new Gapless5({loop:true});
 var song_file_name = "touhou-2000s-fanpage-ytpmv-audio.wav";
 
-var imgzone = document.getElementById("imgzone_vid");
+var imgzone = document.getElementById("imgzone-vid");
 var synth = document.getElementById("synth");
 var synth_echo = document.getElementById("synth-echo");
 var bass = document.getElementById("bass");
@@ -19,6 +19,7 @@ var strings1 = document.getElementById("strings1");
 var strings2 = document.getElementById("strings2");
 var strings3 = document.getElementById("strings3");
 var cirno = document.getElementById("cirno");
+var videos = [imgzone, synth, synth_echo, bass, snare, snare2, kick, hi_hat, strings1, strings2, strings3, cirno]
 
 var timer = document.querySelector(".audio-player .timer");
 
@@ -37,7 +38,7 @@ var volume_bar = document.querySelector(".audio-player .volume-bar");
 var audio_length;
 var is_reapeating;
 var play_flag;
-var all_loaded;
+var realplay_flag;
 var is_seeking;
 var in_enter_screen;
 
@@ -46,9 +47,12 @@ var in_enter_screen;
 
 /* INIT */
 function init(){
+    loadTracks();
+    addTrackListener();
+
     is_reapeating = true;
     play_flag = false;
-    all_loaded = true
+    realplay_flag = true;
 
     volume_bar.value = 25;
     seekVolume();
@@ -77,6 +81,31 @@ function restart_gif(){
     })
 }
 
+function arraysEqual(a, b) {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
+    for (var i = 0; i < a.length; ++i) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
+  }
+
+
+function addTrackListener(){
+    var loaded = new Array(videos.length).fill(0);
+    videos.forEach(function(v, i){
+        v.addEventListener('canplay', function(){
+            loaded[i] = 1;
+            console.log(loaded);
+            if (arraysEqual(loaded, new Array(videos.length).fill(1))){
+                console.log("ééééé");
+                oncanplaythroughRoutine();
+                loaded = new Array(videos.length).fill(0);
+            }
+        });
+    });
+}
 
 init();
 
@@ -126,14 +155,22 @@ light_slider.addEventListener("input", function(){
 */
 function play(){
     if(!player.isPlaying() && !play_flag){
-        play_flag = true;
-        seekAudio(seeking_bar.value);
-        displayLoading();
+        if(!realplay_flag){
+            play_flag = true;
+            seekAudio(seeking_bar.value);
+            displayLoading();
+        }
+        else{
+            console.log("lol")
+            realplay();
+            realplay_flag = false;
+        }
     }
 }
 function realplay(){ // carrément
-    player.play();
+    //setTimeTracks(player.currentPosition*1000);
     playsTracks();
+    player.play();
     displaySongName();
     timer.classList.remove("pause");
 }
@@ -156,16 +193,32 @@ function stop(){
 /*
     Tracks
 */
+
 function oncanplaythroughRoutine(){
+    console.log("MUKYUUUUUU");
+    realplay_flag = true;
     if(play_flag){
         realplay();
         play_flag = false;
-        all_loaded = true;
+        realplay_flag = false;
     }
 }
-snare2.oncanplaythrough = oncanplaythroughRoutine;
 
-
+function loadTracks(){
+    /*imgzone.preload();
+    synth.preload();
+    synth_echo.preload();
+    bass.preload();
+    snare.preload();
+    kick.preload();
+    snare2.preload();
+    hi_hat.preload();
+    telephone.preload();
+    strings1.preload();
+    strings2.preload();
+    strings3.preload();
+    cirno.preload();*/
+}
 function setTimeTracks(time){
     imgzone.currentTime = time;
     synth.currentTime = time;
@@ -265,11 +318,11 @@ function displayLoading(){
     Seeking Bar
 */
 function seekAudio(seek_value) {
-    all_loaded = false;
+    realplay_flag = false;
     is_seeking = true;
-    player.setPosition(seek_value);
     setTimeTracks(seek_value/1000.0);
     setTimer(seek_value/1000);
+    player.setPosition(seek_value);
     is_seeking = false;
 }
 
@@ -281,7 +334,7 @@ seeking_bar.addEventListener("change", function(){
         }
         else{
             play();
-            oncanplaythroughRoutine();
+            //oncanplaythroughRoutine();
         }
     }
 });

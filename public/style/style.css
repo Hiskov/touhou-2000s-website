@@ -461,6 +461,7 @@ header .title .welcome {
   margin: auto;
   position: relative;
   top: 26px;
+  scrollbar-color: #dfdfdf grey;
 }
 #the-marisa-flight .text {
   position: absolute;
@@ -943,6 +944,8 @@ header .title .welcome {
   text-align: center;
 }
 #transmit .box-part .donation-box {
+  position: relative;
+  bottom: 3px;
   width: 40%;
 }
 #transmit .box-part .hand {
