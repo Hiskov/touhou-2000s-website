@@ -1,5 +1,5 @@
 #!/bin/bash
 
-scp public/main.js akyuu@135.181.195.57:/home/akyuu/the2hupage/public/main.js
-scp public/index.html akyuu@135.181.195.57:/home/akyuu/the2hupage/public/index.html
-scp public/style/style.css akyuu@135.181.195.57:/home/akyuu/the2hupage/public/style/style.css
+scp -Cr public akyuu@135.181.195.57:/home/akyuu/the2hupage
+scp router.js akyuu@135.181.195.57:/home/akyuu/the2hupage/router.js
+scp server.js akyuu@135.181.195.57:/home/akyuu/the2hupage/server.js

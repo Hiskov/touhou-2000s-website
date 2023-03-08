@@ -9,7 +9,7 @@ router.get("/", function (req, res) {
 
 // Eirin HELP
 router.get("/help", function (req, res) {
-    res.sendFile(path.join(__dirname, '/eirin.html'));
+    res.sendFile(path.join(__dirname, 'public/eirin.html'));
 });
 
 module.exports = router;

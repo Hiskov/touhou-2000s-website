@@ -51,7 +51,7 @@ function init(){
 
     is_reapeating = true;
     play_flag = false;
-    realplay_flag = true;
+    realplay_flag = false;
 
     volume_bar.value = 25;
     seekVolume();
@@ -92,28 +92,7 @@ function arraysEqual(a, b) {
   }
 
 
-function addTrackListener(){
-    var len = videos.length+1;
-    var loaded = new Array(len).fill(0);
-    videos.forEach(function(v, i){
-        v.addEventListener('canplay', function(){
-            loaded[i] = 1;
-            //console.log(loaded);
-            if (arraysEqual(loaded, new Array(len).fill(1))){
-                oncanplaythroughRoutine();
-                loaded = new Array(len).fill(0);
-            }
-        });
-    });
-    player.onload(function(){
-        console.log("Audio Load");
-        loaded[len-1] = 1;
-        if (arraysEqual(loaded, new Array(len).fill(1))){
-            oncanplaythroughRoutine();
-            loaded = new Array(len).fill(0);
-        }
-    })
-}
+
 
 init();
 
@@ -124,7 +103,37 @@ init();
 */
 var enter_btn = document.querySelector("#enter-screen .enter-btn");
 
-Promise.all(Array.from(document.images).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; }))).then(() => {
+var firstAllVideoLoadedPromiseResolve;
+var firstAllVideoLoadedPromise = new Promise(function(resolve){
+    firstAllVideoLoadedPromiseResolve = resolve;
+});
+function addTrackListener(){
+    var len = videos.length;
+    var loaded = new Array(len).fill(0);
+    videos.forEach(function(v, i){
+        v.addEventListener('canplaythrough', function(){
+            loaded[i] = 1;
+            //console.log(loaded);
+            if (arraysEqual(loaded, new Array(len).fill(1))){
+                oncanplaythroughRoutine();
+                firstAllVideoLoadedPromiseResolve();
+                loaded = new Array(len).fill(0);
+            }
+        });
+    });
+    player.onload = function(){
+        console.log("Audio Load");
+        /*loaded[len-1] = 1;
+        if (arraysEqual(loaded, new Array(len).fill(1))){
+            oncanplaythroughRoutine();
+            loaded = new Array(len).fill(0);
+        }*/
+    }
+}
+
+Promise.all(
+    Array(firstAllVideoLoadedPromise).concat(
+    Array.from(document.images).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; })))).then(() => {
     console.log('images finished loading');
     loading_enter_screen = false;
     enter_btn.innerHTML = "ENTER";
@@ -360,9 +369,12 @@ seeking_bar.addEventListener("input", function(){
 
 
 player.ontimeupdate = () => {
-    if (!is_seeking) {
-        seeking_bar.value = player.getPosition();
-        setTimer(player.getPosition()/1000);
+    if(player.getPosition() < seeking_bar.max-seeking_bar.step){
+        console.log(`<= ${player.getPosition()}`);
+        if (!is_seeking) {
+            seeking_bar.value = player.getPosition();
+            setTimer(player.getPosition()/1000);
+        }
     }
 }
 
