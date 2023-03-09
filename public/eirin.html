@@ -11,30 +11,36 @@
         <div class="main">
             <header>
                 <div class="content">
-                    <img src="assets/F1/anistarlife.gif" style="float: left; width: 20%;">
+                    <img class="anistarlife" src="assets/F1/anistarlife.gif">
                     <div style="float: left;">
                         <div class="title title-up">Yagokoro Help</div>
                         <div class="title title-down">Center </div>
                     </div>
-                    <img src="assets/F1/anistarlife.gif" style="float: left; width: 20%; transform: scaleX(-1);">
+                    <img class="anistarlife" src="assets/F1/anistarlife.gif" style="transform: scaleX(-1);">
                 </div>
             </header>
             <div id="pulse-red">
                 <div></div>
             </div>
             <section>
-                <img style="position: fixed; align-items: right; margin-left: 770px; margin-top: 20px;" src="assets/F1/help_question_mark-0.png">
+                <img style="position: absolute; width: 140px; margin-left: -230px; margin-top: 60px;" src="assets/F1/stethes.gif">
+                <img style="position: absolute; width: 130px; margin-left: 930px; margin-top: 60px;" src="assets/F1/health-medicine-pills22.gif">
+                <img title="Press F1 again to show the help page of your browser!" style="position: absolute; margin-left: 770px; margin-top: 20px;" src="assets/F1/help_question_mark-0.png">
                 <p>
                     Welcome to Yagokoro Help Center! <br><br>
-                    If you are looking for assistance in Gensokyo,
-                    go to eientei and tell <span style="font-family: 'Courier New', Courier, monospace;">[Everybody's Favorite Hourai Pharmacist]</span> you need help!
+                    If you are looking for assistance, it means that you need the services of the lovely, devoted and very intelligent 
+                     <span style="font-family: 'Courier New', Courier, monospace;">[Hourai Pharmacist]</span> of Gensokyo!
+                     Just call her for help with enthusiasm and she will be present to assist you!
                 </p>
                 <p>
-                    
+                    In the complex world of computers, we recommend you to press F1 whenever you need help!
                 </p>
             </section>
-            <div id="pulse-red">
+            <div id="pulse-red" style="margin-bottom: 50px">
                 <div></div>
+            </div>
+            <div style="width: 120px; margin: auto;">
+                <a href="https://www.nicovideo.jp/watch/sm403101" target="_blank"><img id="hat" src="assets/F1/hat.png"></a>
             </div>
         </div>
     </body>
@@ -64,12 +70,13 @@
         header .content{
             display: flex;
             justify-content: center;
+            align-items: center;
         }
         .title{
             text-align: center;
             font-family: 'Times New Roman', Times, serif;
             font-weight: bold;
-            font-size: 70px;
+            font-size: 60px;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; 
             -moz-background-clip: text;
@@ -80,6 +87,11 @@
         }
         .title-down{
             background-image: linear-gradient(90deg, rgb(14, 56, 172) 0%, rgb(38, 93, 245) 50%, rgb(255, 0, 0) 50%, rgb(196, 0, 0) 100%);
+        }
+        .anistarlife{
+            width: 15%;
+            height: 120px;
+            margin: 0 40px 0 40px;
         }
         #pulse-red{
             margin: auto;
@@ -109,7 +121,20 @@
             font-family: Courier;
             padding: 40px 60px 0px 40px;
             margin: 0;
+            text-align: justify;
         }
+        #hat{
+            position: relative;
+            margin: 0;
+            display: block;
+            width: 120px;
+        }
+        #hat:hover{
+            width: 130px;
+            right: 5px;
+            bottom: 5px;
+        }
+
     </style>
     <script>
         function keydown_handler(e) {
