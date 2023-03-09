@@ -82,6 +82,10 @@ section {
 .decoration {
   position: absolute;
 }
+.indicator {
+  position: absolute;
+  width: 31px;
+}
 header {
   margin: auto;
   width: 100%;
