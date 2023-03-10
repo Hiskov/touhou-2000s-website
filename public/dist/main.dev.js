@@ -39,11 +39,10 @@ var loading_enter_screen;
 /* INIT */
 
 function init() {
-  loadTracks();
   addTrackListener();
   is_reapeating = true;
   play_flag = false;
-  realplay_flag = true;
+  realplay_flag = false;
   volume_bar.value = 25;
   seekVolume();
   player.addTrack("assets/".concat(song_file_name)); //var audio_length = document.getElementById("audio_source").duration*1000;
@@ -81,43 +80,49 @@ function arraysEqual(a, b) {
   return true;
 }
 
-function addTrackListener() {
-  var len = videos.length + 1;
-  var loaded = new Array(len).fill(0);
-  videos.forEach(function (v, i) {
-    v.addEventListener('canplay', function () {
-      loaded[i] = 1; //console.log(loaded);
-
-      if (arraysEqual(loaded, new Array(len).fill(1))) {
-        oncanplaythroughRoutine();
-        loaded = new Array(len).fill(0);
-      }
-    });
-  });
-  player.onload(function () {
-    console.log("Audio Load");
-    loaded[len - 1] = 1;
-
-    if (arraysEqual(loaded, new Array(len).fill(1))) {
-      oncanplaythroughRoutine();
-      loaded = new Array(len).fill(0);
-    }
-  });
-}
-
 init();
 /*
     "Enter" Screen
 */
 
 var enter_btn = document.querySelector("#enter-screen .enter-btn");
-Promise.all(Array.from(document.images).filter(function (img) {
+var firstAllVideoLoadedPromiseResolve;
+var firstAllVideoLoadedPromise = new Promise(function (resolve) {
+  firstAllVideoLoadedPromiseResolve = resolve;
+});
+
+function addTrackListener() {
+  var len = videos.length;
+  var loaded = new Array(len).fill(0);
+  videos.forEach(function (v, i) {
+    v.addEventListener('canplaythrough', function () {
+      loaded[i] = 1; //console.log(loaded);
+
+      if (arraysEqual(loaded, new Array(len).fill(1))) {
+        oncanplaythroughRoutine();
+        firstAllVideoLoadedPromiseResolve();
+        loaded = new Array(len).fill(0);
+      }
+    });
+  });
+
+  player.onload = function () {
+    console.log("Audio Load");
+    /*loaded[len-1] = 1;
+    if (arraysEqual(loaded, new Array(len).fill(1))){
+        oncanplaythroughRoutine();
+        loaded = new Array(len).fill(0);
+    }*/
+  };
+}
+
+Promise.all(Array(firstAllVideoLoadedPromise).concat(Array.from(document.images).filter(function (img) {
   return !img.complete;
 }).map(function (img) {
   return new Promise(function (resolve) {
     img.onload = img.onerror = resolve;
   });
-})).then(function () {
+}))).then(function () {
   console.log('images finished loading');
   loading_enter_screen = false;
   enter_btn.innerHTML = "ENTER";
@@ -206,22 +211,6 @@ function oncanplaythroughRoutine() {
   }
 }
 
-function loadTracks() {
-  /*imgzone.preload();
-  synth.preload();
-  synth_echo.preload();
-  bass.preload();
-  snare.preload();
-  kick.preload();
-  snare2.preload();
-  hi_hat.preload();
-  telephone.preload();
-  strings1.preload();
-  strings2.preload();
-  strings3.preload();
-  cirno.preload();*/
-}
-
 function setTimeTracks(time) {
   imgzone.currentTime = time;
   synth.currentTime = time;
@@ -274,10 +263,36 @@ function stopTracks() {
   pauseTracks();
   setTimeTracks(0);
 }
+
+function syncTracks() {
+  var threshold = 100; //ms
+
+  if (!document.hidden) {
+    videos.every(function (v) {
+      var offset = Math.abs(v.currentTime * 1000 - player.getPosition());
+
+      if (offset > threshold) {
+        console.log("SYNC: ".concat(v.id));
+        new Promise(function (resolve) {
+          pause();
+          setTimeout(resolve, 50);
+        }).then(function () {
+          play();
+        });
+        return false;
+      }
+
+      return true;
+    });
+  }
+}
+
+window.setInterval(function () {
+  syncTracks();
+}, 1000);
 /*
     Timer
 */
-
 
 function formatTime(total_sec) {
   total_sec = Math.floor(total_sec);
@@ -351,9 +366,11 @@ seeking_bar.addEventListener("input", function () {
 });
 
 player.ontimeupdate = function () {
-  if (!is_seeking) {
-    seeking_bar.value = player.getPosition();
-    setTimer(player.getPosition() / 1000);
+  if (player.getPosition() < seeking_bar.max - seeking_bar.step) {
+    if (!is_seeking) {
+      seeking_bar.value = player.getPosition();
+      setTimer(player.getPosition() / 1000);
+    }
   }
 };
 /*
@@ -454,8 +471,7 @@ function keydown_handler(e) {
     }
 
     if (e.key === 'F1') {
-      e.preventDefault(); //window.location.href = "http://127.0.0.1:3000/help"
-
+      e.preventDefault();
       window.open("".concat(DOMAIN_URL, "/help"), "_blank");
     }
   }
@@ -463,3 +479,11 @@ function keydown_handler(e) {
 
 document.addEventListener('keyup', keyup_handler, false);
 document.addEventListener('keydown', keydown_handler, false);
+var all_a = document.querySelectorAll("a");
+all_a.forEach(function (a) {
+  a.addEventListener("mousedown", function () {
+    if (a.target === "_blank") {
+      pause();
+    }
+  });
+});

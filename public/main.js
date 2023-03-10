@@ -46,7 +46,6 @@ var loading_enter_screen;
 
 /* INIT */
 function init(){
-    loadTracks();
     addTrackListener();
 
     is_reapeating = true;
@@ -150,7 +149,6 @@ Promise.all(
 /*
     7 Colored Puppeteer
 */
-
 var color_nb = document.querySelector("#seven-color-alice .color-nb");
 var color_slider = document.querySelector("#seven-color-alice .color-slider");
 var alice = document.querySelector("#seven-color-alice .alice");
@@ -163,7 +161,6 @@ color_slider.addEventListener("input", function(){
 /*
     Rumia Light
 */
-
 var rumia = document.querySelector("#rumia-light .rumia");
 var light_slider = document.querySelector("#rumia-light .light-slider");
 light_slider.addEventListener("input", function(){
@@ -216,7 +213,6 @@ function stop(){
 /*
     Tracks
 */
-
 function oncanplaythroughRoutine(){
     console.log("MUKYUUUUUU");
     realplay_flag = true;
@@ -227,21 +223,7 @@ function oncanplaythroughRoutine(){
     }
 }
 
-function loadTracks(){
-    /*imgzone.preload();
-    synth.preload();
-    synth_echo.preload();
-    bass.preload();
-    snare.preload();
-    kick.preload();
-    snare2.preload();
-    hi_hat.preload();
-    telephone.preload();
-    strings1.preload();
-    strings2.preload();
-    strings3.preload();
-    cirno.preload();*/
-}
+
 function setTimeTracks(time){
     imgzone.currentTime = time;
     synth.currentTime = time;
@@ -291,6 +273,31 @@ function stopTracks(){
     pauseTracks();
     setTimeTracks(0);
 }
+
+
+function syncTracks(){
+    var threshold = 100; //ms
+    if(!document.hidden){
+        videos.every(function(v){
+            var offset = Math.abs(v.currentTime*1000 - player.getPosition());
+            if(offset > threshold){
+                console.log(`SYNC: ${v.id}`);
+                new Promise((resolve) => {
+                    pause();
+                    setTimeout(resolve, 50);
+                }).then(function(){
+                    play();
+                });
+                return false;
+            }
+            return true;
+        })
+    }
+} 
+
+window.setInterval(function(){
+    syncTracks();
+}, 1000);
 
 
 
@@ -370,7 +377,6 @@ seeking_bar.addEventListener("input", function(){
 
 player.ontimeupdate = () => {
     if(player.getPosition() < seeking_bar.max-seeking_bar.step){
-        console.log(`<= ${player.getPosition()}`);
         if (!is_seeking) {
             seeking_bar.value = player.getPosition();
             setTimer(player.getPosition()/1000);
@@ -481,7 +487,6 @@ function keydown_handler(e) {
         }
         if(e.key === 'F1'){
             e.preventDefault();
-            //window.location.href = "http://127.0.0.1:3000/help"
             window.open(`${DOMAIN_URL}/help`, "_blank");
         }
     }
@@ -489,3 +494,11 @@ function keydown_handler(e) {
 
 document.addEventListener('keyup', keyup_handler, false);
 document.addEventListener('keydown', keydown_handler, false);
+var all_a = document.querySelectorAll("a");
+all_a.forEach(function(a){
+    a.addEventListener("mousedown", function(){
+        if(a.target === "_blank"){
+            pause();
+        }
+    });
+})
