@@ -16,4 +16,8 @@ router.get("/thegap", function (req, res) {
     res.sendFile(path.join(__dirname, 'public/thegap.html'));
 });
 
+router.get("/armpits", function (req, res) {
+    res.sendFile(path.join(__dirname, 'public/armpits.html'));
+});
+
 module.exports = router;
