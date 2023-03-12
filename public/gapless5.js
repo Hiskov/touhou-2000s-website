@@ -358,7 +358,7 @@ function Gapless5Source(parentPlayer, parentLog, inAudioPath) {
     if (state === Gapless5State.Play) {
       const nextTick = new Date().getTime();
       const elapsed = nextTick - lastTick;
-      position = position + (elapsed * player.playbackRate);
+      position = Number.parseInt(position) + (elapsed * player.playbackRate);
       lastTick = nextTick;
       if (updateLoopState) {
         const shouldLoop = player.isSingleLoop();
@@ -1399,7 +1399,7 @@ export function Gapless5(options = {}, deprecated = {}) { // eslint-disable-line
       }
       this.onstop(source.audioPath);
     }
-    this.ontimeupdate();
+    //this.ontimeupdate();
   };
 
 

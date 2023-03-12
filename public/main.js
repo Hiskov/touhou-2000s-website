@@ -19,7 +19,7 @@ var strings1 = document.getElementById("strings1");
 var strings2 = document.getElementById("strings2");
 var strings3 = document.getElementById("strings3");
 var cirno = document.getElementById("cirno");
-var videos = [imgzone, synth, synth_echo, bass, snare, snare2, kick, hi_hat, strings1, strings2, strings3, cirno]
+var videos = [synth, synth_echo, imgzone, bass, snare, snare2, kick, hi_hat, strings1, strings2, strings3, cirno]
 
 var timer = document.querySelector(".audio-player .timer");
 
@@ -41,7 +41,6 @@ var play_flag;
 var realplay_flag;
 var is_seeking;
 var in_enter_screen;
-var loading_enter_screen;
 
 
 /* INIT */
@@ -68,7 +67,6 @@ function init(){
     seekAudio(0);
 
     in_enter_screen = true;
-    loading_enter_screen = true;
 }
 
 function restart_gif(){
@@ -112,7 +110,6 @@ function addTrackListener(){
     videos.forEach(function(v, i){
         v.addEventListener('canplaythrough', function(){
             loaded[i] = 1;
-            //console.log(loaded);
             if (arraysEqual(loaded, new Array(len).fill(1))){
                 oncanplaythroughRoutine();
                 firstAllVideoLoadedPromiseResolve();
@@ -120,21 +117,11 @@ function addTrackListener(){
             }
         });
     });
-    player.onload = function(){
-        console.log("Audio Load");
-        /*loaded[len-1] = 1;
-        if (arraysEqual(loaded, new Array(len).fill(1))){
-            oncanplaythroughRoutine();
-            loaded = new Array(len).fill(0);
-        }*/
-    }
 }
 
 Promise.all(
     Array(firstAllVideoLoadedPromise).concat(
     Array.from(document.images).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; })))).then(() => {
-    console.log('images finished loading');
-    loading_enter_screen = false;
     enter_btn.innerHTML = "ENTER";
     enter_btn.classList.add("ckickable");
     enter_btn.addEventListener("click", function(){
@@ -181,7 +168,6 @@ function play(){
             displayLoading();
         }
         else{
-            console.log("lol")
             realplay();
             realplay_flag = false;
         }
@@ -214,7 +200,6 @@ function stop(){
     Tracks
 */
 function oncanplaythroughRoutine(){
-    console.log("MUKYUUUUUU");
     realplay_flag = true;
     if(play_flag){
         realplay();
@@ -271,23 +256,25 @@ function pauseTracks(){
 }
 function stopTracks(){
     pauseTracks();
-    setTimeTracks(0);
+    seekAudio(0);
+    seeking_bar.value = player.getPosition();
 }
 
 
 function syncTracks(){
-    var threshold = 100; //ms
+    var threshold = 50; //ms
     if(!document.hidden){
         videos.every(function(v){
             var offset = Math.abs(v.currentTime*1000 - player.getPosition());
             if(offset > threshold){
-                console.log(`SYNC: ${v.id}`);
+                console.log(`SYNC: ${v.id} ${offset}`);
                 new Promise((resolve) => {
                     pause();
-                    setTimeout(resolve, 50);
+                    setTimeout(resolve, 1);
                 }).then(function(){
                     play();
                 });
+                //v.currentTime = player.getPosition()/1000;
                 return false;
             }
             return true;
@@ -375,7 +362,7 @@ seeking_bar.addEventListener("input", function(){
 });
 
 
-player.ontimeupdate = () => {
+player.ontimeupdate = function(){
     if(player.getPosition() < seeking_bar.max-seeking_bar.step){
         if (!is_seeking) {
             seeking_bar.value = player.getPosition();
@@ -487,6 +474,7 @@ function keydown_handler(e) {
         }
         if(e.key === 'F1'){
             e.preventDefault();
+            pause();
             window.open(`${DOMAIN_URL}/help`, "_blank");
         }
     }

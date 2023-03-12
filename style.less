@@ -43,6 +43,7 @@ html{
 body{
     color: white;
     font-size: medium;
+    margin: 0;
 }
 
 
@@ -95,7 +96,7 @@ body{
     height: @total_heigh;
     margin: auto;
     image-rendering: pixelated;
-    margin-top: -5px;
+    //margin-top: -5px;
 }
 
 
@@ -217,12 +218,12 @@ header{
     border: 2px solid #fe8cfe;
     width: 44%;
     margin-right: 3px;
-    height: 99%;
+    height: 98%;
     .shrine{
         background-image: url("../assets/Elluel.jpg");
         background-size: 130% auto;
         background-position: 37% 0%;
-        height: 80.5%;
+        height: 81%;
         .yuyuko{
             position: relative;
             top: 20px;
@@ -230,7 +231,7 @@ header{
         }
     }
     .always-hungry{
-        border-top: 2px solid #fe8cfe;;
+        outline: 2px solid #fe8cfe;;
         position: relative;
         width: 100%;
         //image-rendering: auto;
@@ -555,7 +556,7 @@ header{
 
 #approved{
     border: 1px solid white;
-    width: 320px;
+    width: 322px;
     height: 58px;
     font-size: 13px;
     background-color: #000;
@@ -870,12 +871,14 @@ header{
     bottom: 30px;
     right: 15px;
     .uuu{
+        width: 100px;
         position: relative;
-        left: 40px;
+        left: 32px;
         top: 25px;
         color: red;
         font-size: 27px;
         font-family: "kozmin";
+        text-align: center;
     }
     .remilia{
         transform: scaleX(-1);

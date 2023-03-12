@@ -32,6 +32,7 @@ html {
 body {
   color: white;
   font-size: medium;
+  margin: 0;
 }
 #enter-screen {
   background-color: #0a0a0a;
@@ -74,7 +75,6 @@ body {
   height: 932px;
   margin: auto;
   image-rendering: pixelated;
-  margin-top: -5px;
 }
 section {
   float: left;
@@ -168,13 +168,13 @@ header .title .welcome {
   border: 2px solid #fe8cfe;
   width: 44%;
   margin-right: 3px;
-  height: 99%;
+  height: 98%;
 }
 #yuyuko-shrine .shrine {
   background-image: url("../assets/Elluel.jpg");
   background-size: 130% auto;
   background-position: 37% 0%;
-  height: 80.5%;
+  height: 81%;
 }
 #yuyuko-shrine .shrine .yuyuko {
   position: relative;
@@ -182,7 +182,7 @@ header .title .welcome {
   left: 23%;
 }
 #yuyuko-shrine .always-hungry {
-  border-top: 2px solid #fe8cfe;
+  outline: 2px solid #fe8cfe;
   position: relative;
   width: 100%;
 }
@@ -634,7 +634,7 @@ header .title .welcome {
 }
 #approved {
   border: 1px solid white;
-  width: 320px;
+  width: 322px;
   height: 58px;
   font-size: 13px;
   background-color: #000;
@@ -913,12 +913,14 @@ header .title .welcome {
   right: 15px;
 }
 #remi-chan .uuu {
+  width: 100px;
   position: relative;
-  left: 40px;
+  left: 32px;
   top: 25px;
   color: red;
   font-size: 27px;
   font-family: "kozmin";
+  text-align: center;
 }
 #remi-chan .remilia {
   transform: scaleX(-1);

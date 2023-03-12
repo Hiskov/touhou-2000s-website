@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Lunatic Red Eyes</title>
+    </head>
+    <body>
+        <video loop>
+            <source src="assets/red eyes BG.mp4" type="video/mp4">
+        </video>
+    </body>
+    <style>
+        body{
+            background-color: black;
+        }
+        video{
+            position: fixed;
+            right: 0px;
+            top: -90px;
+            min-width: 100%;
+            min-height: 100%;
+        }
+    </style>
+    <script>
+        var video = document.querySelector("video");
+        video.volume = 0;
+        video.play();
+    </script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Club Ibuki</title>
+        <link rel="icon" type="image/x-icon" href="assets/Icon_th075.png">
+        <link rel="stylesheet" href="https://unpkg.com/98.css">
+    </head>
+    <body>
+        <video id="video">
+            <source src="assets/SUCCESS.mp4" type="video/mp4">
+        </video>
+        <button>サクセス</button>
+    </body>
+    <style>
+        body{
+            background-color: black;
+            background-image: url("assets/success.png");
+            background-size: 700px 400px;
+            image-rendering: pixelated;
+        }
+        video{
+            display: block;
+            margin: auto;
+            width: 300px;
+        }
+        button{
+            display: block;
+            margin: auto;
+        }
+    </style>
+    <script>
+        var video = document.querySelector("video");
+        var btn = document.querySelector("button");
+        video.volume = 1.0;
+        btn.addEventListener("click",function(){
+            video.currentTime = 0;
+            video.play();
+        })
+    </script>
+</html>

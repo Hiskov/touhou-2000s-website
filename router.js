@@ -20,4 +20,16 @@ router.get("/armpits", function (req, res) {
     res.sendFile(path.join(__dirname, 'public/armpits.html'));
 });
 
+router.get("/club-ibuki", function (req, res) {
+    res.sendFile(path.join(__dirname, 'public/club-ibuki.html'));
+});
+
+router.get("/lunatic-red-eyes", function (req, res) {
+    res.sendFile(path.join(__dirname, 'public/lunatic-red-eyes.html'));
+});
+
+router.get("/yuuka-shrine", function (req, res) {
+    res.sendFile(path.join(__dirname, 'public/yuuka-shrine.html'));
+});
+
 module.exports = router;
