@@ -1,6 +1,6 @@
 import {Gapless5} from "./gapless5.js"
 
-var DOMAIN_URL = "http://127.0.0.1:80"
+var DOMAIN_URL = "http://www.mytouhoupage.net"
 
 var enter_screen = document.getElementById("enter-screen");
 
@@ -119,18 +119,28 @@ function addTrackListener(){
     });
 }
 
+function canEnter(){
+    if(in_enter_screen === true){
+        enter_btn.innerHTML = "ENTER";
+        enter_btn.classList.add("ckickable");
+        enter_btn.addEventListener("click", function(){
+            enter_screen.classList.add("disable");
+            in_enter_screen = false;
+            restart_gif();
+            play();
+        });
+    }
+}
+
 Promise.all(
     Array(firstAllVideoLoadedPromise).concat(
     Array.from(document.images).filter(img => !img.complete).map(img => new Promise(resolve => { img.onload = img.onerror = resolve; })))).then(() => {
-    enter_btn.innerHTML = "ENTER";
-    enter_btn.classList.add("ckickable");
-    enter_btn.addEventListener("click", function(){
-        enter_screen.classList.add("disable");
-        in_enter_screen = false;
-        restart_gif();
-        play();
-    });
+        canEnter();
 });
+
+/* Timeout */
+setTimeout(canEnter, 5000);
+
 
 
 /*

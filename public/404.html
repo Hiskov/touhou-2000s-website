@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>404</title>
+        <link rel="icon" type="image/x-icon"> 
+    </head>
+    <body>
+        <video id="video">
+            <source src="assets/404.mp4" type="video/mp4">
+        </video>
+    </body>
+    <style>
+        body{
+            background-color: black;
+            margin: 0;
+        }
+        video{
+            position: fixed;
+            right: 0px;
+            width: 100%;
+            height: 100%;
+            image-rendering: pixelated;
+        }
+    </style>
+    <script>
+        var video = document.querySelector("video");
+        video.volume = 0;
+        video.play();
+
+        document.getElementById('video').addEventListener('timeupdate', handler, false);
+        function handler(e) {
+            var pos = video.currentTime;
+            console.log(pos);
+            if (pos > 2.2) {
+                video.currentTime = 0;
+                video.play();
+            }
+        }
+    </script>
+</html>
