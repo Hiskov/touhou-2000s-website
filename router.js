@@ -6,6 +6,17 @@ const path = require('path');
 router.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, '/index.html'));
 });
+router.get("/home", function (req, res) {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+router.get("/about", function (req, res) {
+    res.sendFile(path.join(__dirname, 'public/about.html'));
+});
+
+router.get("/credits", function (req, res) {
+    res.sendFile(path.join(__dirname, 'public/credits.html'));
+});
 
 // Eirin HELP
 router.get("/help", function (req, res) {
