@@ -75,7 +75,9 @@
         </div>
         <section id="part2">
             <img style="position: relative; top: 50px; margin: auto; display: block;" src="assets/Yuuka Shrine/yuuka_sprite.gif">
+            <img src="assets/Yuuka Shrine/parasol.png" style="position: absolute; left: 80px; top: 80px; width: 250px; transform: scaleX(-1);">
             <img style="position: relative; top: 70px; margin: auto; display: block;" src="assets/Yuuka Shrine/Flower Master of the Four Seasons.png">
+            <img src="assets/Yuuka Shrine/youkai_moe.gif" style="transform: rotate(35deg); image-rendering: pixelated; position: absolute; right: 40px; top: 170px; width: 350px;">
             <div id="sunflower-deco">
             </div>
             <div id="animations">
@@ -86,9 +88,90 @@
             <div id="sunflower-deco">
             </div>
         </section>
+        <div style="overflow: visible; margin: auto; width: 100%; height: 100px;">
+            <div id="limit3">
+            </div>
+        </div>
+        <section id="part3">
+            <video loop mute autoplay src="assets/Yuuka Shrine/Yuuka Sunflower Flield.mp4"></video>
+        </section>
+        <div style="overflow: visible; margin: auto; width: 100%; height: 100px;">
+            <div id="limit4">
+            </div>
+        </div>
+        <section id="part4">
+            <img src="assets/Yuuka Shrine/moon.gif" style="image-rendering: pixelated; position: absolute; left: 200px; top: 100px; width: 250px;">
+            <img src="assets/Yuuka Shrine/Good Night.gif" style="width: 35%; image-rendering: pixelated; position: relative; top: 100px; display: block; margin: auto;" >
+            <img src="assets/Yuuka Shrine/moon.gif" style="image-rendering: pixelated; position: absolute; right: 200px; top: 100px; width: 250px; transform: scaleX(-1);">
+            <div id="reveil">
+                <img src="assets/Yuuka Shrine/yuuka3.png">
+            </div>
+        </section>
         </div>
     </body>
     <style>
+        #reveil img{
+            position: relative;
+            left: 92px;
+            top: 114px;
+        }
+        #reveil{
+            transform: scale(1.2);
+            height: 456px;
+            width: 368px;
+            background-image: url("assets/Yuuka Shrine/reveil.gif");
+            margin: auto;
+            position: relative;
+            top: 250px;
+            image-rendering: auto;
+        }
+        #part4{
+            position: relative;
+            bottom: 410px;
+            width: 100%;
+            overflow: hidden;
+            height: 1050px;
+            background-image: url("assets/Yuuka Shrine/stars3.gif");
+            image-rendering: pixelated;
+        }
+        #limit4{
+            background-image: url("assets/Yuuka Shrine/delimit1.png");
+            background-repeat: repeat-x;
+            background-size: 800px;
+            width: 100%;
+            height: 100px;
+            position: relative;
+            z-index: 10;
+            bottom: 345px;
+            image-rendering: pixelated;
+            margin: auto;
+        }
+        #part3 video{
+            width: 100%;
+            
+        }
+        #part3{
+            position: relative;
+            bottom: 300px;
+            width: 100%;
+            overflow: hidden;
+            height: 900px;
+            background-image: url("assets/Yuuka Shrine/bg1.png");
+            background-size: 200px 150px;
+            image-rendering: pixelated;
+        }
+        #limit3{
+            background-image: url("assets/Yuuka Shrine/delimit2.png");
+            background-repeat: repeat-x;
+            background-size: 800px;
+            width: 100%;
+            height: 100px;
+            position: relative;
+            z-index: 10;
+            bottom: 250px;
+            image-rendering: pixelated;
+            margin: auto;
+        }
         body{
             background-color: black;
             margin: 0;
@@ -100,10 +183,10 @@
             margin: auto;
         }
         header{
-            height: 900px;
+            height: 1000px;
             width: 100%;
             background-image: url("assets/Yuuka Shrine/bg_header.png");
-            background-size: 100% 900px;
+            background-size: 100% 1000px;
             overflow: hidden;
             margin: auto;
         }
@@ -164,7 +247,7 @@
             bottom: 100px;
             width: 100%;
             overflow: hidden;
-            height: 1200px;
+            height: 2400px;
             background-image: url("assets/Yuuka Shrine/bg2.gif");
         }
         #limit2{
@@ -184,7 +267,7 @@
             bottom: 200px;
             width: 100%;
             overflow: hidden;
-            height: 1050px;
+            height: 1200px;
             background-image: url("assets/Yuuka Shrine/bg1.png");
             background-size: 200px 150px;
             image-rendering: pixelated;
@@ -213,5 +296,8 @@
         }
     </style>
     <script>
+        var video = document.querySelector("#part3 video");
+        video.volume = 0;
+        video.play();
     </script>
 </html>

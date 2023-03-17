@@ -473,7 +473,8 @@ yagokoro_help_close_btn_.addEventListener("click", function(){
 function keyup_handler(e) {
     if(!in_enter_screen){
         if(e.key === ' ') {
-            pauseAction();
+            //pauseAction();
+            restart_gif();
         }
     }
 }
